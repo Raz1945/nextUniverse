@@ -1,0 +1,40 @@
+/* Estilos para el contenedor del Indicador de Recursos */
+.resource-indicator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Estilos para el contenedor principal del Indicador de Recursos */
+.resource-indicator-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.25rem 1rem;
+  /* background-color: aqua; */
+}
+
+/* Estilos para el icono del Indicador de Recursos */
+.resource-indicator__icon {
+  display: flex;
+  align-items: center;
+  width: 25px;
+  height: 25px;
+}
+
+/* Estilos para el texto de producción del Indicador de Recursos */
+.resource-indicator__name {
+  color: var(--clr-01);
+  font-size: 12px;
+  font-weight: 500;
+}
+
+/* Capacity */
+.red-storage {
+  color: red;
+}
+
+.green-storage {
+  color: green;
+}

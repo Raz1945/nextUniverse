@@ -1,0 +1,71 @@
+/* Estilo para el tooltip de ResourceIndicator */
+.tooltip__wrapper {
+  position: absolute;
+  top: 60px;
+  background-color: #535bf2;
+  border: 2px solid #646cff;
+  border-radius: 1rem;
+  padding: 10px;
+  z-index: 1000;
+  width: 200px;
+  opacity: 0; /* Inicialmente, el tooltip estará oculto */
+  transition: opacity 0.5s ease; /* Transición de opacidad */
+}
+
+/* Estilo para ocultar el borde superior del tooltip de ResourceIndicator */
+.tooltip__wrapper::before {
+  content: '';
+  position: absolute;
+  top: -13px;
+  left: 50%;
+  border: 5px solid transparent;
+  border-bottom: 8px solid var(--clr-91); /* Color de la flecha del tooltip */
+  transform: translateX(-50%);
+}
+
+/* Estilo para mostrar el tooltip de ResourceIndicator */
+.show-tooltip {
+  opacity: 1;
+}
+
+/* Estilo para el contenedor del texto del tooltip de ResourceIndicator */
+.tooltip__text-wrapper {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  font-size: 12px;
+  color: #f8f9fa;
+}
+
+/* Estilo para el título del tooltip de ResourceIndicator */
+.tooltip__title {
+  font-size: 1em;
+  text-transform: capitalize;
+  margin: 0;
+}
+
+/* Estilo para la línea del tooltip de ResourceIndicator */
+.tooltip__line {
+  margin: 0;
+  margin-bottom: 5px;
+  border: 1px solid var(--clr-90);
+  border-radius: 1rem;
+}
+
+/* Estilo para la información del tooltip de ResourceIndicator */
+.tooltip__info {
+  font-weight: 400;
+  margin: 0;
+}
+
+/* Estilo para el valor del tooltip de ResourceIndicator */
+.tooltip__value {
+  font-weight: 700;
+  color: var(--clr-01);
+}
+
+/* Estilo para el valor de uso del tooltip de ResourceIndicator */
+.tooltip__value-uso {
+  font-weight: 700;
+  /* color: #9d0208;  */
+}

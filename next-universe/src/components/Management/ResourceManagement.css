@@ -1,0 +1,8 @@
+.resource-indicators__wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  width: 100%;
+  position: relative;
+}
