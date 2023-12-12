@@ -106,7 +106,6 @@ const register = async (req, res) => {
   }
 };
 
-
 // Función para hashear la contraseña
 async function hashPassword(password) {
   const saltRounds = 10;

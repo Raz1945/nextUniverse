@@ -1,10 +1,5 @@
 require('dotenv').config();
-const mongoose = require('mongoose');
-const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
-const User = require('../models/userSchema');
 const UserPlanet = require('../models/userPlanetSchema');
-
 
 // Actualizar los valores de los recursos
 const updateResourceValue = async (req, res) => {
@@ -21,7 +16,7 @@ const updateResourceValue = async (req, res) => {
 
     // Actualiza el perfil del usuario en la base de datos
     const updatedUserPlanet = await UserPlanet.findOneAndUpdate(
-      { user_id: userId }, 
+      { user_id: userId },
       {
         $set: {
           'resources.metal': metalProduction,
@@ -43,7 +38,6 @@ const updateResourceValue = async (req, res) => {
 };
 
 // Actualizar el nivel de producción de una planta
-
 const updatePlantCurrentLevel = async (req, res) => {
   try {
     const userId = req.user.id;
@@ -56,7 +50,7 @@ const updatePlantCurrentLevel = async (req, res) => {
         $set: {
           [`planets.0.installation.${plantType}.currentLevel`]: newLevel,
         },
-      },
+      }
     );
 
     console.log(`Planta de ${plantType} actualizada:`, updatedUserPlanet);
@@ -66,12 +60,61 @@ const updatePlantCurrentLevel = async (req, res) => {
       profile: updatedUserPlanet,
     });
   } catch (error) {
-    console.error(`Error al actualizar el nivel de la planta de ${plantType}:`, error);
+    console.error(
+      `Error al actualizar el nivel de la planta de ${plantType}:`,
+      error
+    );
     res.status(500).send('Error interno del servidor');
   }
 };
 
-const getPlantLevels = async (req, res) => {
+// Extrae el nivel de las instalacionesv
+// const getPlantCurrentLevels = async (req, res) => {
+//   try {
+//     const userId = req.user.id;
+//     const userPlanet = await UserPlanet.findOne({ user_id: userId });
+
+//     if (!userPlanet) {
+//       return res
+//         .status(404)
+//         .json({ message: 'Perfil de planeta no encontrado' });
+//     }
+
+//     const installationLevels = {
+//       resource: {
+//         metalMine: 
+//           userPlanet.planets[0].installation.metalMine.currentLevel,
+//         crystalMine:
+//           userPlanet.planets[0].installation.crystalMine.currentLevel,
+//         deuteriumSynthesizer:
+//           userPlanet.planets[0].installation.deuteriumSynthesizer.currentLevel,
+//         solarPowerPlant:
+//           userPlanet.planets[0].installation.solarPowerPlant.currentLevel,
+//       },
+//       storage: {
+//         metalWarehouse:
+//           userPlanet.planets[0].installation.metalWarehouse.currentLevel,
+//         crystalWarehouse:
+//           userPlanet.planets[0].installation.crystalWarehouse.currentLevel,
+//         deuteriumTank:
+//           userPlanet.planets[0].installation.deuteriumTank.currentLevel,
+//       },
+//       // Agrega más instalaciones según sea necesario
+//     };
+
+//     res.status(200).json(installationLevels);
+//   } catch (error) {
+//     console.error('Error al obtener los niveles de las plantas:', error);
+//     res.status(500).send('Error interno del servidor');
+//   }
+// };
+
+
+// serviceController.js
+
+// ...
+
+const getAllPlantCurrentLevels = async (req, res) => {
   try {
     const userId = req.user.id;
     const userPlanet = await UserPlanet.findOne({ user_id: userId });
@@ -80,18 +123,33 @@ const getPlantLevels = async (req, res) => {
       return res.status(404).json({ message: 'Perfil de planeta no encontrado' });
     }
 
-    const plantLevels = {
-      metal: userPlanet.planets[0].installation.metalMine.currentLevel,
-      crystal: userPlanet.planets[0].installation.crystalMine.currentLevel,
-      deuterium: userPlanet.planets[0].installation.deuteriumSynthesizer.currentLevel,
-      // Agrega más plantas según sea necesario
+    const installationLevels = {
+      resource: {
+        metalMine: userPlanet.planets[0].installation.metalMine.currentLevel,
+        crystalMine: userPlanet.planets[0].installation.crystalMine.currentLevel,
+        deuteriumSynthesizer: userPlanet.planets[0].installation.deuteriumSynthesizer.currentLevel,
+        solarPowerPlant: userPlanet.planets[0].installation.solarPowerPlant.currentLevel,
+      },
+      storage: {
+        metalWarehouse: userPlanet.planets[0].installation.metalWarehouse.currentLevel,
+        crystalWarehouse: userPlanet.planets[0].installation.crystalWarehouse.currentLevel,
+        deuteriumTank: userPlanet.planets[0].installation.deuteriumTank.currentLevel,
+      },
+      // Agrega más instalaciones según sea necesario
     };
-
-    res.status(200).json(plantLevels);
+    
+    // console.log('Respuesta del servidor:', installationLevels);
+    res.status(200).json(installationLevels);
   } catch (error) {
     console.error('Error al obtener los niveles de las plantas:', error);
     res.status(500).send('Error interno del servidor');
   }
 };
 
-module.exports = { updateResourceValue, updatePlantCurrentLevel, getPlantLevels };
+
+module.exports = {
+  updateResourceValue,
+  updatePlantCurrentLevel,
+  getAllPlantCurrentLevels,
+
+};

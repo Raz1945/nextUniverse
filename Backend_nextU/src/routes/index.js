@@ -16,7 +16,7 @@ router.get('/profile',authenticateToken ,userController.getUserProfile)
 
 router.post('/profile/update',authenticateToken ,serviceController.updateResourceValue)
 router.post('/profile/plants/:plantType/level',authenticateToken ,serviceController.updatePlantCurrentLevel)
-router.get('/profile/get_plant_levels', authenticateToken, serviceController.getPlantLevels);
+router.get('/profile/plants/level', authenticateToken, serviceController.getAllPlantCurrentLevels);
 
 // router.post('/profile/cancel_plant_level',authenticateToken ,userController.cancelPlantCurrentLevel)
 // router.post('/profile/previus_plant_level',authenticateToken ,userController.previusPlantCurrentLevel)

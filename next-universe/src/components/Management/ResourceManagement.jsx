@@ -4,7 +4,7 @@ import { calculateResourceValues } from '../../functions/calculateResourceValues
 import { calculateStorageCapacity } from '../../functions/calculateStorageCapacity';
 import { calculateStorageHidden } from '../../functions/calculateStorageHiden';
 import { ResourceIndicator } from '../Indicator/ResourceIndicator';
-import { Navbar } from '../Navbar/Navbar';
+
 import './ResourceManagement.css';
 
 import axios from '../../api/axios';
@@ -185,7 +185,6 @@ export const ResourceManagement = () => {
 
   return (
     <>
-      <Navbar />
       <div className="resource-indicators__wrapper">
         <ResourceIndicator
           icon={<GiIBeam size={23} />}

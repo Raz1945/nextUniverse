@@ -5,6 +5,7 @@ import { Register } from '../components/Register/Register';
 import { RequireAuth } from '../components/RequireAuth';
 import { Welcome } from '../pages/Welcome';
 import { Overview } from '../pages/Overview';
+import { Installations } from '../pages/Installations';
 
 export const AppRoutes = () => {
 
@@ -19,6 +20,7 @@ export const AppRoutes = () => {
         {/* Protected routes   */}
         <Route element={<RequireAuth />}>
           <Route path="/overview" element={<Overview />} /> {/* Ruta a la Pagina Principal  */}
+          <Route path="/installations" element={<Installations />} /> {/* Ruta a la Pagina de Instalaciones  */}
         </Route>
 
         {/* 404 */}
