@@ -76,3 +76,11 @@ Se deberia de sepeara los controlladores, en lo que es para el usuario de lo que
 
 - Tiene que haber un indicador general de los recuros totales 
 - Cada planeta tiene que tener el total de su produccion
+
+
+# [!NEXT]
+Lo siguiente a hacer es:
+* Una funcion para el calculo del tiempo de las construcciones, la cual necesitara:
+  - Que se modifique el schema para añadirle 'fabrica de robotos' y de 'nanobots' la cual sera necesario para el calculo del tiempo de las construcciones
+
+* agregar un timer al front, el cual debera mostrar el tiempo que tardara en actualizarse.

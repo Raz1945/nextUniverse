@@ -2,10 +2,12 @@ import axios from "../../api/axios";
 
 const PROFILE_URL = '/profile';
 
+// Define la URL dinámica para actualizar el nivel de la planta
 export const UPDATE_PLANT_LEVEL_URL = '/profile/plants/:plantType/level';
 
+// Función para actualizar el nivel de la planta
 export const updatePlantCurrentLevel = async (plantInfo) => {
-  console.log(plantInfo.plantType);
+  // console.log(plantInfo.plantType);
 
   try {
     const accessToken = localStorage.getItem('accessToken');
@@ -18,6 +20,7 @@ export const updatePlantCurrentLevel = async (plantInfo) => {
     });
 
     // console.log("Respuesta en el frontend:", response);
+
     if (response?.data?.userPlanet?.planets[0]?.installation[plantInfo.plantType]) {
       const currentLevel = response.data.userPlanet.planets[0].installation[plantInfo.plantType].currentLevel;
       console.log("el antiguo nivel es:", currentLevel);

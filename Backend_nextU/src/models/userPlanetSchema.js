@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 const installSchema = require('./installSchema');
 const warehouseSchema = require('./warehouseSchema');
-// todo --> Pensar un atributo para almacenar el estado de los rescursos, 
+
 
 const userPlanetSchema = new Schema({
   user_id: {
@@ -34,6 +34,10 @@ const userPlanetSchema = new Schema({
         metalWarehouse: warehouseSchema,
         crystalWarehouse: warehouseSchema,
         deuteriumTank: warehouseSchema,
+
+        // Se utiliza el mismo schema que para los recuros ya que se piensa en un futuro agregarle un item para aumentar temporalmente la produccion (eficiencia)
+        robotFactory: installSchema, 
+        nanobotsFactory: installSchema, // requiere computerTechnologyLevel 10 y robotFactory 10
       },
       //...otros detalles del planeta
     },
@@ -41,6 +45,7 @@ const userPlanetSchema = new Schema({
   ],
   technology: {
     energyTechnologyLevel: Number,
+    computerTechnologyLevel: Number,
   },
 });
 

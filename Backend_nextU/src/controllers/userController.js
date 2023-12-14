@@ -84,6 +84,14 @@ const register = async (req, res) => {
             deuteriumTank: {
               currentLevel: 0,
             },
+            robotFactory: {
+              plantType: 'robotFactory',
+              currentLevel: 0,
+            },
+            nanobotsFactory: {
+              plantType: 'nanobotsFactory',
+              currentLevel: 0,
+            },
             //...otros detalles del planeta
           },
           // ...
@@ -91,6 +99,7 @@ const register = async (req, res) => {
       ],
       technology: {
         energyTechnologyLevel: 1,
+        computerTechnologyLevel: 0,
       },
     });
 
@@ -188,7 +197,6 @@ const getUserProfile = async (req, res) => {
   }
 };
 
-
 // Actualizar los valores de los recursos
 const updateResourceValue = async (req, res) => {
   try {
@@ -204,7 +212,7 @@ const updateResourceValue = async (req, res) => {
 
     // Actualiza el perfil del usuario en la base de datos
     const updatedUserPlanet = await UserPlanet.findOneAndUpdate(
-      { user_id: userId }, 
+      { user_id: userId },
       {
         $set: {
           'resources.metal': metalProduction,
@@ -225,4 +233,4 @@ const updateResourceValue = async (req, res) => {
   }
 };
 
-module.exports = { register, login, getUserProfile, updateResourceValue, };
+module.exports = { register, login, getUserProfile, updateResourceValue };
