@@ -16,7 +16,7 @@ export const getInstallationCurrentLevel = async () => {
     // Devuelve el objeto completo de niveles de instalación
     const installationLevels = response.data;
     // console.log('Los niveles son:', installationLevels);
-    
+
     return installationLevels;
   } catch (error) {
     console.error('Error al obtener los niveles de instalación:', error);

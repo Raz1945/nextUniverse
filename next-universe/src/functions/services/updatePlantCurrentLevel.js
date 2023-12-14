@@ -17,7 +17,7 @@ export const updatePlantCurrentLevel = async (plantInfo) => {
       },
     });
 
-    // Verifica si response.data y las propiedades subsiguientes están definidas
+    // console.log("Respuesta en el frontend:", response);
     if (response?.data?.userPlanet?.planets[0]?.installation[plantInfo.plantType]) {
       const currentLevel = response.data.userPlanet.planets[0].installation[plantInfo.plantType].currentLevel;
       console.log("el antiguo nivel es:", currentLevel);
@@ -37,9 +37,14 @@ export const updatePlantCurrentLevel = async (plantInfo) => {
       });
 
       console.log('subimos de nivel');
+    } else {
+      // Devuelve toda la respuesta en caso de que la propiedad específica no esté definida
+      console.error('Error al actualizar el nivel de la planta: La propiedad específica no está definida en la respuesta', response.data);
+      return { error: 'La propiedad específica no está definida en la respuesta', response: response.data };
     }
   } catch (error) {
+    // Devuelve el error completo en caso de cualquier otro error
     console.error('Error al actualizar el nivel de la planta:', error);
-    throw error;
+    return { error: 'Error en la solicitud al servidor', response: null };
   }
 };

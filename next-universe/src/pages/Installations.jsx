@@ -10,7 +10,7 @@ export const Installations = () => {
     const fetchPlantLevels = async () => {
       try {
         const levels = await getInstallationCurrentLevel();
-        console.log('Respuesta del frontend:', levels);
+        // console.log('Respuesta del frontend:', levels);
 
         // Accede a los niveles de instalación
         const metalMineLevel = levels?.resource?.metalMine;
@@ -24,34 +24,35 @@ export const Installations = () => {
     };
 
     fetchPlantLevels();
-  }, []);
+  }, [metalCurrentLevel]);
 
   // // ------------------//  //
-
-const handleOnClickUpdate = async (plantType) => {
-  const plantInfo = {
-    plantType,
-  };
-
-  try {
-    const response = await updatePlantCurrentLevel(plantInfo);
-
-    // Actualiza el estado local según el tipo de planta
-    switch (plantType) {
-      case 'metalMine':
-        setMetalCurrentLevel(response.data.userPlanet.planets[0].installation[plantInfo.plantType].currentLevel || "error"); //todo no deberia de ser 0 en caso de que no encuente el valor
-        break;
-
+  const handleOnClickUpdate = async (plantType) => {
+    const plantInfo = {
+      plantType,
+    };
+  
+    try {
+      const response = await updatePlantCurrentLevel(plantInfo);
+  
+      // Actualiza el estado local según el tipo de planta
+      switch (plantType) {
+        case 'metalMine':
+          setMetalCurrentLevel(response?.data?.userPlanet?.planets[0]?.installation[plantInfo.plantType]?.currentLevel || "error");
+          break;
+  
         // Agrega más casos para otras plantas según sea necesario
-      default:
-        break;
+        default:
+          break;
+      }
+  
+      console.log(`Planta de ${plantType} actualizada`);
+    } catch (error) {
+      console.error(`Error al actualizar la planta de ${plantType}:`, error);
     }
-
-    console.log(`Planta de ${plantType} actualizada`);
-  } catch (error) {
-    console.error(`Error al actualizar la planta de ${plantType}:`, error);
-  }
-};
+  };
+  
+  
 
   return (
     <>

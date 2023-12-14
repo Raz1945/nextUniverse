@@ -138,7 +138,7 @@ const getAllPlantCurrentLevels = async (req, res) => {
       // Agrega más instalaciones según sea necesario
     };
     
-    // console.log('Respuesta del servidor:', installationLevels);
+      console.log('Respuesta del servidor:', installationLevels);
     res.status(200).json(installationLevels);
   } catch (error) {
     console.error('Error al obtener los niveles de las plantas:', error);
