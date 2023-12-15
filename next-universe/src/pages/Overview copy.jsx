@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { ResourceManagement } from "../components/Management/ResourceManagement";
-import { updatePlantCurrentLevel } from "../functions/services/updatePlantCurrentLevel";
+import { updatePlantCurrentLevel } from "../functions/services/updateInstallationCurrentLevel";
 import { getPlantCurrentLevel } from "../functions/services/getInstallationCurrentLevel";
 import { Installation } from '../components/Installations/Installation';
 

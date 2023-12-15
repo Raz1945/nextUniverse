@@ -35,9 +35,9 @@ const userPlanetSchema = new Schema({
         crystalWarehouse: warehouseSchema,
         deuteriumTank: warehouseSchema,
 
-        // Se utiliza el mismo schema que para los recuros ya que se piensa en un futuro agregarle un item para aumentar temporalmente la produccion (eficiencia)
+        //* Se utiliza el mismo schema que para los recuros ya que se piensa en un futuro agregarle un item para aumentar temporalmente la produccion (eficiencia)
         robotFactory: installSchema, 
-        nanobotsFactory: installSchema, // requiere computerTechnologyLevel 10 y robotFactory 10
+        nanobotsFactory: installSchema, //* requiere computerTechnologyLevel 10 y robotFactory 10
       },
       //...otros detalles del planeta
     },

@@ -6,9 +6,7 @@ const PROFILE_URL = '/profile';
 export const UPDATE_PLANT_LEVEL_URL = '/profile/plants/:plantType/level';
 
 // Función para actualizar el nivel de la planta
-export const updatePlantCurrentLevel = async (plantInfo) => {
-  // console.log(plantInfo.plantType);
-
+export const updateInstallationCurrentLevel = async (plantInfo) => {
   try {
     const accessToken = localStorage.getItem('accessToken');
 

@@ -223,6 +223,7 @@ const updateResourceValue = async (req, res) => {
       }
     );
 
+    // todo  ver el terma de si mostrar los datos 'profile' 
     res.status(200).json({
       message: 'Production values saved successfully',
       profile: updatedUserPlanet,

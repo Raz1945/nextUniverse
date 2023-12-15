@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { getInstallationCurrentLevel } from "../functions/services/getInstallationCurrentLevel";
 import { Installation } from "../components/Installations/Installation";
-import { updatePlantCurrentLevel } from "../functions/services/updatePlantCurrentLevel";
+import { updateInstallationCurrentLevel } from "../functions/services/updateInstallationCurrentLevel";
 
 export const Installations = () => {
   const [metalCurrentLevel, setMetalCurrentLevel] = useState();
@@ -35,7 +35,7 @@ export const Installations = () => {
     };
 
     try {
-      const response = await updatePlantCurrentLevel(plantInfo);
+      const response = await updateInstallationCurrentLevel(plantInfo);
 
       // Actualiza el estado local según el tipo de planta
       switch (plantType) {
