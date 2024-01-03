@@ -2,57 +2,87 @@ import { useEffect, useState } from "react";
 import { getInstallationCurrentLevel } from "../functions/services/getInstallationCurrentLevel";
 import { Installation } from "../components/Installations/Installation";
 import { updateInstallationCurrentLevel } from "../functions/services/updateInstallationCurrentLevel";
+import { getResourceValues } from "../functions/services/getResourceValues";
+import { calculateSpecificInstallationCost } from "../functions/calculateSpecificInstallationCost";
 
 export const Installations = () => {
   const [metalCurrentLevel, setMetalCurrentLevel] = useState();
 
-  // Obtiene los niveles actuales de las instalaciones desde el backend y actualiza el estado local de las instalaciones.
   useEffect(() => {
-    const fetchPlantLevels = async () => {
+    const fetchData = async () => {
       try {
+        const resource = await fetchResource();
         const levels = await getInstallationCurrentLevel();
-
-        // console.log('Respuesta del frontend:', levels);
-
-        // Accede a los niveles de instalación
         const metalMineLevel = levels?.resource?.metalMine;
-
-        // Haz lo que necesites con estos niveles
         setMetalCurrentLevel(metalMineLevel);
-
       } catch (error) {
-        console.log("Error al obtener los niveles de instalación", error);
+        console.log("Error al obtener los valores de recursos o los niveles de instalación", error);
       }
     };
 
-    fetchPlantLevels();
+    fetchData();
   }, [metalCurrentLevel]);
 
-  // Funcion para actualizar el nivel de las instalaciones
+
   const handleOnClickUpdate = async (plantType) => {
-    const plantInfo = {
-      plantType,
-    };
+    const plantInfo = { plantType };
+    console.log("Planta de",plantInfo.plantType);
+
+    const metalNextLevel = metalCurrentLevel + 1;
 
     try {
-      const response = await updateInstallationCurrentLevel(plantInfo);
+      const costResourceResponse = await calculateSpecificInstallationCost(
+        plantInfo.plantType,
+         metalNextLevel
+      );
 
-      // Actualiza el estado local según el tipo de planta
-      switch (plantType) {
-        case 'metalMine':
-          setMetalCurrentLevel(response?.data?.userPlanet?.planets[0]?.installation[plantInfo.plantType]?.currentLevel || "error");
-          break;
+      const { metalCost, currentLevel } = costResourceResponse;
+      console.log("costo de metal", metalCost, "para alcanzar el nivel", currentLevel);
+      
+      const resourceValues = await fetchResource();
 
-        // Agrega más casos para otras instalaciones según sea necesario
-        default:
-          break;
+      const metalResource = resourceValues.metal;
+
+
+      console.log("Cantidad de metal disponibe", metalResource );
+      console.log("Cantidad de metal necesario para alcanzar el nivel", metalCost)
+
+
+      if (metalResource >= metalCost) {
+        switch (plantType) {
+          case 'metalMine':
+            await updateInstallationCurrentLevel(plantInfo);
+            setMetalCurrentLevel(currentLevel);
+
+            //todo Debo restarle al valor de metal el costo de la actualizacion
+            
+            break;
+          default:
+            break;
+        }
+
+        console.log(`Planta de ${plantType} actualizada`);
+      } else {
+        console.log(`Recursos insuficientes para actualizar la planta de ${plantType}`);
       }
-
-      console.log(`Planta de ${plantType} actualizada`);
     } catch (error) {
       console.error(`Error al actualizar la planta de ${plantType}:`, error);
     }
   };
+
+  // obtengo los valores de los recuros
+  const fetchResource = async () => {
+    try {
+      const resource = await getResourceValues();
+      console.log(resource); // Imprime los valores de los recursos en la consola
+      console.log(resource.metal); // Imprime el valor del recurso "metal" en la consola
+      return resource;
+    } catch (error) {
+      console.log("Error al obtener los valores de recursos:", error);
+      throw error; // Asegura que el error sea propagado
+    }
+  };
+
 
   return (
     <>
@@ -60,7 +90,8 @@ export const Installations = () => {
       <Installation
         plantType="Metal"
         currentLevel={metalCurrentLevel}
-        onClickUpdate={() => handleOnClickUpdate('metalMine')} // 
+        metalCost={Math.round(calculateSpecificInstallationCost('metalMine', metalCurrentLevel+1).metalCost)}
+        onClickUpdate={() => handleOnClickUpdate('metalMine')}
       />
     </>
   );

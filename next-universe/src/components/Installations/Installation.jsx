@@ -1,9 +1,10 @@
 
-export const Installation = ({ plantType, currentLevel, picture, onClickUpdate }) => {
+export const Installation = ({ plantType, metalCost, currentLevel, picture, onClickUpdate }) => {
 
   return (
     <div>
-      <p>Planta de {plantType} - Nivel actual: {currentLevel}</p>
+      <p>Planta de {plantType} - Nivel actual: {currentLevel} --&gt; {currentLevel + 1}</p>
+      <p>Metal: {metalCost}</p>
       <picture>
         <img src={picture} alt="Picture of installation" />
       </picture>

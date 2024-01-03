@@ -24,7 +24,7 @@ La elección de realizar una sola petición FETCH o múltiples depende de varios
   - Mayor control: Puedes controlar la frecuencia de las solicitudes para cada recurso por separado, lo que puede ser útil si algunos recursos cambian con más frecuencia que otros.
   - Menos datos innecesarios: Si solo necesitas información sobre un recurso en particular, puedes obtener solo esos datos, lo que puede ser más eficiente.
 - _Desventajas:_
-  - Mayor sobrecarga de red: Realizar múltiples solicitudes puede aumentar la carga de red y la latencia en comparación con una sola solicitud.
+  - **Mayor sobrecarga de red**: Realizar múltiples solicitudes puede aumentar la carga de red y la latencia en comparación con una sola solicitud.
 
 En tu caso, si los datos de todas las plantas se actualizan con la misma frecuencia y necesitas todos los datos en tiempo real, una sola petición FETCH podría ser más eficiente. Si solo necesitas información sobre un recurso específico y las actualizaciones no son sincrónicas, las solicitudes individuales pueden ser más adecuadas.
 
@@ -69,6 +69,8 @@ Considera cómo se usan los datos en diferentes partes de tu aplicación. Si cie
 Se deberia de sepeara los controlladores, en lo que es para el usuario de lo que son los controladores del planeta,
   ej: para subir de nivel, o bajar...
 
+
+
 > [!CAUTION]
 - plantes[n] cambiar las funciones 
 - Tiene que haber un indicador general de los recuros totales 
@@ -80,3 +82,7 @@ Lo siguiente a hacer es:
 - Una funcion para el **calculo del coste** de cada nivel.
 - Una funcion para el **calculo del tiempo de las construcciones**, la cual necesitara:
   Agregar un timer al front, el cual debera **mostrar el tiempo** que tardara en actualizarse.
+
+
+>[!WARNING]
+> Utilizo multiples fechts lo que puede probocar una sobrecarga de la red. 

@@ -13,7 +13,7 @@ export const getInstallationCurrentLevel = async () => {
       },
     });
 
-    // Devuelve el objeto completo de niveles de instalación
+    // Devuelve el objeto completo de niveles de las instalaciones
     const installationLevels = response.data;
     // console.log('Los niveles son:', installationLevels);
 

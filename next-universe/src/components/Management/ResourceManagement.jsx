@@ -10,7 +10,7 @@ import './ResourceManagement.css';
 import axios from '../../api/axios';
 const PROFILE_URL = '/profile';
 const UPDATE_URL = '/profile/update';
-const INTERVALO_DURACION = 5000; 
+const INTERVALO_DURACION = 5000; // ver alternativa como el uso de fechas.
 
 export const ResourceManagement = () => {
   const [resourceValues, setResourceValues] = useState(null);

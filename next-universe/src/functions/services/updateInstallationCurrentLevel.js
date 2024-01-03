@@ -7,6 +7,8 @@ export const UPDATE_PLANT_LEVEL_URL = '/profile/plants/:plantType/level';
 
 // Función para actualizar el nivel de la planta
 export const updateInstallationCurrentLevel = async (plantInfo) => {
+  // console.log("plantInfo.plantType en el frontend:", plantInfo.plantType);
+
   try {
     const accessToken = localStorage.getItem('accessToken');
 
@@ -17,7 +19,7 @@ export const updateInstallationCurrentLevel = async (plantInfo) => {
       },
     });
 
-    // console.log("Respuesta en el frontend:", response);
+    // console.log("Respuesta en el frontend:", response.data.userPlanet.planets[0].installation[plantInfo.plantType]);
 
     if (response?.data?.userPlanet?.planets[0]?.installation[plantInfo.plantType]) {
       const currentLevel = response.data.userPlanet.planets[0].installation[plantInfo.plantType].currentLevel;
@@ -27,8 +29,13 @@ export const updateInstallationCurrentLevel = async (plantInfo) => {
       const newLevel = currentLevel + 1;
       console.log("el nuevo nivel es:", newLevel);
 
-      // Construye la URL con el valor dinámico de plantType
-      const updatePlantLevelUrl = `/profile/plants/${plantInfo.plantType}/level`;
+      // Construye la URL con el valor dinámico de plantType          
+      // const plantType = response.data.userPlanet.planets[0].installation[plantInfo].plantType;
+      const plantType = plantInfo.plantType;
+      console.log("plantType en el frontend:", plantType);
+
+      const updatePlantLevelUrl = `/profile/plants/${plantType}/level`;
+
 
       // Realiza la solicitud POST al backend con la información actualizada de la planta
       await axios.post(updatePlantLevelUrl, { ...plantInfo, newLevel }, {

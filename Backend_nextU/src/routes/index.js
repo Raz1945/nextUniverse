@@ -15,6 +15,7 @@ router.get('/profile',authenticateToken ,userController.getUserProfile)
 
 
 router.post('/profile/update',authenticateToken ,serviceController.updateResourceValue)
+router.get('/profile/resource',authenticateToken ,serviceController.getResourceValues)
 router.post('/profile/plants/:plantType/level',authenticateToken ,serviceController.updatePlantCurrentLevel)
 router.get('/profile/plants/level', authenticateToken, serviceController.getAllPlantCurrentLevels);
 
