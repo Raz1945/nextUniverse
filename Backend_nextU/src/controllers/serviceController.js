@@ -12,6 +12,7 @@ const updateResourceValue = async (req, res) => {
       energyProduction,
     } = req.body;
 
+    // console.log('Datos recibidos del frontend:', req.body);
     // console.log('valor de metal', metalProduction);
 
     // Actualiza el perfil del usuario en la base de datos
@@ -60,7 +61,7 @@ const getResourceValues = async (req, res) => {
     };
 
     // Imprime los valores de recursos en la consola
-    console.log('Valores de recursos:', resourceValues);
+    // console.log('Valores de recursos:', resourceValues);
 
     // Envía los valores de recursos como respuesta exitosa
     res.status(200).json(resourceValues);
@@ -127,7 +128,7 @@ const getAllPlantCurrentLevels = async (req, res) => {
       // Agrega más instalaciones según sea necesario
     };
     
-      console.log('Respuesta del servidor:', installationLevels);
+      // console.log('Respuesta del servidor:', installationLevels);
     res.status(200).json(installationLevels);
   } catch (error) {
     console.error('Error al obtener los niveles de las plantas:', error);
