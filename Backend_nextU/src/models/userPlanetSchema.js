@@ -11,6 +11,7 @@ const userPlanetSchema = new Schema({
     required: true,
   },
   ecoUniverse: Number,
+  // otras caracteristicas del universo
   resources:{
     metal: Number,
     crystal: Number,
@@ -37,7 +38,7 @@ const userPlanetSchema = new Schema({
 
         //* Se utiliza el mismo schema que para los recuros ya que se piensa en un futuro agregarle un item para aumentar temporalmente la produccion (eficiencia)
         robotFactory: installSchema, 
-        nanobotsFactory: installSchema, //* requiere computerTechnologyLevel 10 y robotFactory 10
+        nanobotFactory: installSchema, //* requiere computerTechnologyLevel 10 y robotFactory 10
       },
       //...otros detalles del planeta
     },

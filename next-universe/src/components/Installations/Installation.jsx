@@ -1,4 +1,6 @@
-export const Installation = ({ plantType, metalCost, crystalCost, deuteriumCost, currentLevel, picture, onClickUpdate }) => {
+export const Installation = (
+  { plantType, metalCost, crystalCost, deuteriumCost, currentLevel, picture, onClickUpdate, onClickCancel }
+) => {
   return (
     <div>
       <p>Planta de {plantType} - Nivel actual: {currentLevel} --&gt; {currentLevel + 1}</p>
@@ -12,6 +14,9 @@ export const Installation = ({ plantType, metalCost, crystalCost, deuteriumCost,
         <li>
           <button type="button" onClick={onClickUpdate}>
             Mejorar
+          </button>
+          <button type="button" onClick={onClickCancel}>
+            Cancelar
           </button>
           {/* <button type="button" onClick={() => handleOnClickUpdate('metalMine')}>Mejorar</button> */}
         </li>

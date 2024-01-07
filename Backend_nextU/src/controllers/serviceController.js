@@ -54,6 +54,7 @@ const getResourceValues = async (req, res) => {
 
     // Extrae los valores de recursos del planeta
     const resourceValues = {
+      ecoUniverse: userPlanet.ecoUniverse,
       metal: userPlanet.resources.metal,
       crystal: userPlanet.resources.crystal,
       deuterium: userPlanet.resources.deuterium,
@@ -125,6 +126,10 @@ const getAllPlantCurrentLevels = async (req, res) => {
         crystalWarehouse: userPlanet.planets[0].installation.crystalWarehouse.currentLevel,
         deuteriumTank: userPlanet.planets[0].installation.deuteriumTank.currentLevel,
       },
+      installation:{
+        robotFactory:userPlanet.planets[0].installation.robotFactory.currentLevel,
+        nanoFactory:userPlanet.planets[0].installation.nanobotFactory.currentLevel,
+      }
       // Agrega más instalaciones según sea necesario
     };
     
