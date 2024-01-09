@@ -1,5 +1,5 @@
 export const Installation = (
-  { plantType, metalCost, crystalCost, deuteriumCost, currentLevel, picture, onClickUpdate, onClickCancel }
+  { plantType, metalCost, crystalCost, deuteriumCost, currentLevel, picture, onClickUpdate, onClickCancel, countdown }
 ) => {
   return (
     <div>
@@ -10,6 +10,8 @@ export const Installation = (
       <picture>
         <img src={picture} alt="Picture of installation" />
       </picture>
+
+      <h3>{countdown}</h3>
       <ul>
         <li>
           <button type="button" onClick={onClickUpdate}>
