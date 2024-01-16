@@ -6,6 +6,7 @@ import { getResourceValues } from "../functions/services/getResourceValues";
 import { calculateSpecificInstallationCost } from "../functions/calculateSpecificInstallationCost";
 import { updateResourceValue } from "../functions/services/updateResourceValue";
 import { calculateTimeBuild } from "../functions/calculateTimeBuild";
+import { img } from "../assets/installationsData";
 
 export const Installations = () => {
   const [resourceCurrentLevels, setResourceCurrentLevels] = useState({
@@ -15,10 +16,10 @@ export const Installations = () => {
     nanobotFactory: 0,
     // otras instalaciones
   });
-
   const [countdown, setCountdown] = useState("");
   const [updateInProgress, setUpdateInProgress] = useState(false);
   const [countdownInterval, setCountdownInterval] = useState(null);
+
 
   useEffect(() => {
     fetchData();
@@ -28,6 +29,7 @@ export const Installations = () => {
     fetchInstallationLevels();
   }, [resourceCurrentLevels]);
 
+
   const fetchData = async () => {
     try {
       await fetchResource();
@@ -35,6 +37,7 @@ export const Installations = () => {
       console.error("Error al obtener los valores de recursos:", error);
     }
   };
+
 
   const fetchInstallationLevels = async () => {
     try {
@@ -51,6 +54,7 @@ export const Installations = () => {
       console.error("Error al obtener los niveles de instalación", error);
     }
   };
+
 
   const handleOnClickUpdate = async (plantType) => {
     if (updateInProgress) {
@@ -125,7 +129,7 @@ export const Installations = () => {
   };
 
 
-  // vuelve un nivel para atras
+  //todo Regresa un nivel para atras, necesita un costo.
   const handleOnClickDestroy = () => {
     console.log('Destruir la instalación');
   };
@@ -153,6 +157,7 @@ export const Installations = () => {
     setUpdateInProgress(false);
   };
 
+
   const updateAllResources = async (updatedResources) => {
     try {
       await updateResourceValue(updatedResources);
@@ -161,6 +166,7 @@ export const Installations = () => {
       console.error("Error al actualizar la cantidad de recursos:", error);
     }
   };
+
 
   const fetchResource = async () => {
     try {
@@ -173,10 +179,15 @@ export const Installations = () => {
     }
   };
 
+
   return (
     <>
       <div>Instalaciones</div>
+      {/* Mostrar solamente una lista e las imagnes de las instalaciones  */}
+
+      {/* y al hacer click en la imagen se mostraria mas detalles de la instalacion */}
       <Installation
+        picture={img.installation.crystal.inside[1]}
         plantType="metalMine"
         currentLevel={resourceCurrentLevels.metalMine}
         metalCost={Math.round(calculateSpecificInstallationCost('metalMine', resourceCurrentLevels.metalMine + 1).metalCost)}

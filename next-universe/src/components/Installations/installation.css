@@ -1,0 +1,19 @@
+.inst_wrap{
+  display: flex;
+  width: 600px;
+  background-color: cadetblue;
+}
+.inst_picture_wrap{}
+
+.inst_picture{
+  display: flex;
+  width: 200px;
+  align-items: center;
+  height: auto;
+  overflow: hidden;
+}
+.inst_picture-img{
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}  

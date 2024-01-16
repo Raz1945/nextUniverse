@@ -1,3 +1,5 @@
+import './installation.css' ;
+
 export const Installation = ({
   plantType,
   metalCost,
@@ -11,35 +13,39 @@ export const Installation = ({
   countdown,
 }) => {
   return (
-    <div>
-      <p>
-        Planta de {plantType} - Nivel actual: {currentLevel} --&gt;{' '}
-        {currentLevel + 1}
-      </p>
-      
-      <p>Metal: {metalCost}</p>
-      <p>Crystal: {crystalCost}</p>
-      {deuteriumCost > 0 && <p>Deuterio: {deuteriumCost}</p>}
+    <div className="inst_wrap">
+      <div className="inst_picture_wrap">
+        <picture className="inst_picture">
+          <img src={picture} alt='Picture of installation' className="inst_picture-img" />
+        </picture>
+      </div>
 
-      <picture>
-        <img src={picture} alt='Picture of installation' />
-      </picture>
+      <div className="inst_info">
+        <p>
+          Planta de {plantType} - Nivel actual: {currentLevel} --&gt;{' '}
+          {currentLevel + 1}
+        </p>
 
-      <h3>{countdown}</h3>
+        <p>Metal: {metalCost}</p>
+        <p>Crystal: {crystalCost}</p>
+        {deuteriumCost > 0 && <p>Deuterio: {deuteriumCost}</p>}
 
-      <ul>
+        <h3 className="countdown">{countdown}</h3>
+      </div>
+
+      <ul className="inst_buttons">
         <li>
-          <button type='button' onClick={onClickUpdate}>
+          <button type='button' onClick={onClickUpdate} className="btn_update">
             Mejorar
           </button>
         </li>
         <li>
-          <button type='button' onClick={onClickCancel}>
+          <button type='button' onClick={onClickCancel} className="btn_cancel">
             Cancelar
           </button>
         </li>
         <li>
-          <button type='button' onClick={onClickDestroy}>
+          <button type='button' onClick={onClickDestroy} className="btn_destroy">
             Demoler
           </button>
         </li>

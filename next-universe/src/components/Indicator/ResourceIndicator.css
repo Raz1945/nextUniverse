@@ -7,11 +7,18 @@
 }
 
 /* Estilos para el contenedor principal del Indicador de Recursos */
+/* todo ver el estilo */
 .resource-indicator-wrapper {
+  gap: 3rem;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  padding: 0.25rem 1rem;
+  padding: .5rem 1rem;
+  margin: .75rem;
+  border: 1px solid var(--clr-91);
+  border-radius: .5rem;
+  border-bottom: 0;
+  border-right: 0;
+  box-shadow: 0px 0px 2px .5px  var(--clr-92);
   /* background-color: aqua; */
 }
 

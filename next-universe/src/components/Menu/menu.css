@@ -1,0 +1,16 @@
+.menu__list_wrap{
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  background-color: lightslategrey;
+}
+
+
+.menu__content{
+  display: flex;
+  list-style: none;
+}
+
+.menu__item{
+  background-color: aqua;
+}

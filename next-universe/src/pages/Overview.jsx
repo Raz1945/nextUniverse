@@ -1,25 +1,23 @@
-import { Link } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import { Navbar } from "../components/Navbar/Navbar";
 import { ResourceManagement } from "../components/Management/ResourceManagement";
+import { Menu } from "../components/Menu/Menu";
+// import { Layout } from "../components/Layout/Layout";
 
 export const Overview = () => {
-
   return (
     <>
-      <Navbar />
+      <div className="wrapper">
       <ResourceManagement />
-    
-      <div className="container">
-      <ul>
-        <li>
-          <Link to='/overview' >Overview</Link>
-        </li>
-        <li>
-          <Link to='/installations' >Installation</Link>
-        </li>
-      </ul>
-      </div>
 
+
+
+      <Menu />
+
+
+        <Outlet />
+      <Navbar />
+      </div>
     </>
   );
 };

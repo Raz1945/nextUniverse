@@ -104,7 +104,6 @@ export const Login = () => {
       <p>
         Need an Account?<br />
         <span className='line'>
-          {/* REGISTRARSE -> Puedes agregar un enlace de enrutamiento aquí */}
           <a href="/register">Sign Up</a>
         </span>
       </p>

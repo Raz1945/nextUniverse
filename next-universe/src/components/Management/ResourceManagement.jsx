@@ -1,16 +1,21 @@
 import { useState, useEffect } from 'react';
-import { GiIBeam, GiDiamondHard, GiOilPump, GiLightningArc } from 'react-icons/gi';
+import {
+  GiIBeam,
+  GiDiamondHard,
+  GiOilPump,
+  GiLightningArc
+} from 'react-icons/gi';
+import axios from '../../api/axios';
 import { calculateResourceValues } from '../../functions/calculateResourceValues';
 import { calculateStorageCapacity } from '../../functions/calculateStorageCapacity';
 import { calculateStorageHidden } from '../../functions/calculateStorageHiden';
 import { ResourceIndicator } from '../Indicator/ResourceIndicator';
 
-import './ResourceManagement.css';
+import './resourceManagement.css';
 
-import axios from '../../api/axios';
 const PROFILE_URL = '/profile';
 const UPDATE_URL = '/profile/update';
-const INTERVALO_DURACION = 5000; // ver alternativa como el uso de fechas.
+const INTERVALO_DURACION = 5000;
 
 export const ResourceManagement = () => {
   const [resourceValues, setResourceValues] = useState(null);
@@ -138,45 +143,47 @@ export const ResourceManagement = () => {
     }
   };
 
-  useEffect(() => {
-    const fetchDataAndInitialize = async () => {
-      await fetchInitialResourceValues();
-      const interval = setInterval(updateResourceValues, INTERVALO_DURACION);
-      return () => clearInterval(interval);
-    };
 
+  useEffect(() => {
     fetchDataAndInitialize();
   }, []);
 
+  const fetchDataAndInitialize = async () => {
+    await fetchInitialResourceValues();
+    const interval = setInterval(updateResourceValues, INTERVALO_DURACION);
+    return () => clearInterval(interval);
+  };
+
+
   useEffect(() => {
-    // Llamada a axios.post después de que el estado se ha actualizado completamente
     if (resourceValues) {
-      const saveProductionData = async () => {
-        const accessToken = localStorage.getItem('accessToken');
-        try {
-          const saveProductionResponse = await axios.post(
-            UPDATE_URL,
-            {
-              metalProduction: resourceValues.metal,
-              crystalProduction: resourceValues.crystal,
-              deuteriumProduction: resourceValues.deuterium,
-            },
-            {
-              headers: {
-                Authorization: `Bearer ${accessToken}`,
-              },
-            }
-          );
-
-          // console.log('Valores de producción guardados:', saveProductionResponse.data);
-        } catch (error) {
-          console.error('Error al guardar los valores de producción:', error);
-        }
-      };
-
       saveProductionData();
     }
   }, [resourceValues]);
+
+  const saveProductionData = async () => {
+    const accessToken = localStorage.getItem('accessToken');
+    try {
+      const saveProductionResponse = await axios.post(
+        UPDATE_URL,
+        {
+          metalProduction: resourceValues.metal,
+          crystalProduction: resourceValues.crystal,
+          deuteriumProduction: resourceValues.deuterium,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        }
+      );
+
+      // console.log('Valores de producción guardados:', saveProductionResponse.data);
+    } catch (error) {
+      console.error('Error al guardar los valores de producción:', error);
+    }
+  };
+
 
   if (!resourceValues) {
     return null;
@@ -185,6 +192,8 @@ export const ResourceManagement = () => {
 
   return (
     <>
+      {/*  Icono/logo de nextU */}
+
       <div className="resource-indicators__wrapper">
         <ResourceIndicator
           icon={<GiIBeam size={23} />}
@@ -222,6 +231,8 @@ export const ResourceManagement = () => {
           usage={19} //todo Establecer el uso de la energía 
         />
       </div>
+
+      {/* Icono/img del Avatar del jugador */}
     </>
   );
 };
