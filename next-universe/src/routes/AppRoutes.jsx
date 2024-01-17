@@ -39,7 +39,7 @@ import { Login } from '../components/Login/Login';
 import { Register } from '../components/Register/Register';
 import { RequireAuth } from '../components/RequireAuth';
 import { Welcome } from '../pages/Welcome';
-import { Overview } from '../pages/Overview';
+import { Main } from '../pages/Main';
 import { Installations } from '../pages/Installations';
 
 // Crear el enrutador con la nueva estructura de rutas
@@ -55,11 +55,11 @@ export const AppRoutes = createBrowserRouter([
         element: <RequireAuth />,
         children: [
           {
-            path: 'overview',
-            element: <Overview />, // Ruta a la página principal
+            path: 'main',
+            element: <Main />, // Ruta a la página principal
             children: [
               { path: 'installations', element: <Installations /> },
-              { index: true, element: <Installations /> }, // Se renderiza por el OutLet de 'Overview'
+              { index: true, element: <Installations /> }, // Se renderiza por el OutLet de 'Main'
               { path: 'hangar', element: <h1>Hangar</h1> }, // Ruta relativa a 'overview'
             ],
           },

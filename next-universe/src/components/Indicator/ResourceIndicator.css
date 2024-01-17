@@ -19,7 +19,8 @@
   border-bottom: 0;
   border-right: 0;
   box-shadow: 0px 0px 2px .5px  var(--clr-92);
-  /* background-color: aqua; */
+  min-width: 100px;
+  /* background-color: #33CCCC; */
 }
 
 /* Estilos para el icono del Indicador de Recursos */

@@ -1,0 +1,19 @@
+.main__wrapper {
+  /* background-color: #535bf2; */
+  margin-top: 1rem;
+
+  display: flex;
+  width: 100%;
+  height: 100%;
+
+  border-top: 2px solid transparent;
+  border-image: linear-gradient(
+      to right,
+      hsl(0, 0%, 14%, 0) 0%,
+      hsl(237, 100%, 70%, 0.1) 18%,
+      hsla(237, 86%, 64%, 0.8) 50%,
+      hsl(237, 100%, 70%, 0.1) 75%,
+      hsl(0, 0%, 14%, 0) 100%
+    )
+    1;
+}

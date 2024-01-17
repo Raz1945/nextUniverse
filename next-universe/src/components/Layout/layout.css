@@ -1,7 +1,22 @@
-.layout__wrapper{
+.layout__wrapper {
   display: flex;
+  flex-direction: column;
   height: 100vh;
   width: 100vw;
-  background:linear-gradient(#242424, #343a40 );
-
+  background-image: linear-gradient(
+    to bottom,
+    hsl(0, 0%, 5%),
+    hsl(248, 20%, 8%) 10%,
+    hsl(253, 28%, 10%),
+    hsl(249, 33%, 12%),
+    hsl(251, 40%, 14%),
+    hsl(251, 42%, 15%),
+    hsl(253, 46%, 16%),
+    hsl(253, 47%, 17%),
+    hsl(253, 47%, 18%),
+    hsl(253, 49%, 18%),
+    hsl(253, 49%, 19%),
+    hsl(254, 51%, 20%)
+  );
+  background-size: cover;
 }

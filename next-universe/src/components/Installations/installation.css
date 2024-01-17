@@ -1,7 +1,7 @@
 .inst_wrap{
   display: flex;
   width: 600px;
-  background-color: cadetblue;
+  /* background-color: cadetblue; */
 }
 .inst_picture_wrap{}
 

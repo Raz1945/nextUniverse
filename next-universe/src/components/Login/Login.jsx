@@ -11,7 +11,7 @@ export const Login = () => {
 
   const navigate = useNavigate();
   const location = useLocation();
-  const from = location.state?.from?.pathname || '/overview'; // Al loguearse se envie al usuario al menu principal 
+  const from = location.state?.from?.pathname || '/main'; // Al loguearse se envie al usuario al menu principal 
 
   const userRef = useRef();
   const errRef = useRef();
