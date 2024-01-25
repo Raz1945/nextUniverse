@@ -1,4 +1,4 @@
-import axios from '../../api/axios';
+import axios from '../../../api/axios';
 
 const GET_PLANT_LEVEL_URL = '/profile/plants/level';
 

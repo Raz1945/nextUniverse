@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react";
+// importamos el custom hook desde el archivo
 import { InstallationSupplies } from "../components/Supplies/InstallationSupplies";
 import { useInstallationLogic } from "../hooks/useInstallationLogic";
 
+// importamos los hooks useSelector y useDispatch de react-redux
 import { useSelector, useDispatch } from "react-redux";
 
 export const Installations = () => {
@@ -15,6 +16,7 @@ export const Installations = () => {
   const { handleOnClickUpdate, handleOnClickCancel, handleOnClickDestroy } =
     useInstallationLogic(installationState, dispatch);
 
+  // creamos un array de objetos que contienen la información de cada instalación
   const installations = [
     {
       plantType: "metalMine",
@@ -24,12 +26,25 @@ export const Installations = () => {
       currentLevel: installationState.metalMine.level,
       countdown: installationState.metalMine.countdown,
     },
+    {
+      plantType: "crystalMine",
+      metalCost: installationState.crystalMine.metalCost,
+      crystalCost: installationState.crystalMine.crystalCost,
+      deuteriumCost: installationState.crystalMine.deuteriumCost,
+      currentLevel: installationState.crystalMine.level,
+      countdown: installationState.crystalMine.countdown,
+    },
+    {
+      plantType: "deuteriumSynthesizer",
+      metalCost: installationState.deuteriumSynthesizer.metalCost,
+      crystalCost: installationState.deuteriumSynthesizer.crystalCost,
+      deuteriumCost: installationState.deuteriumSynthesizer.deuteriumCost,
+      currentLevel: installationState.deuteriumSynthesizer.level,
+      countdown: installationState.deuteriumSynthesizer.countdown,
+    },
+    // otras instalaciones
   ];
 
-  console.log('el costo de metal de la instalación es:', installations[0].metalCost);
-  console.log('el nivel de la instalación es:', installations[0].currentLevel);
-  console.log('el temporizador de la instalación es:', installations[0].countdown);
-  
   return (
     <InstallationSupplies
 
@@ -40,7 +55,7 @@ export const Installations = () => {
       deuteriumCost={installations[0].deuteriumCost}
       currentLevel={installations[0].currentLevel}
       countdown={installations[0].countdown}
-
+      
       // le pasamos las funciones que hemos obtenido del custom hook
       onClickUpdate={() => handleOnClickUpdate(installations[0].plantType)}
       onClickCancel={() => handleOnClickCancel(installations[0].plantType)}

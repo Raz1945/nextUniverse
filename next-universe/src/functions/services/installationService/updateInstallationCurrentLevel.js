@@ -1,4 +1,4 @@
-import axios from '../../api/axios';
+import axios from '../../../api/axios';
 
 const PROFILE_URL = '/profile';
 
@@ -6,8 +6,8 @@ const PROFILE_URL = '/profile';
 export const UPDATE_PLANT_LEVEL_URL = '/profile/plants/:plantType/level';
 
 // Función para actualizar el nivel de la planta
-export const updateInstallationCurrentLevel = async (plantInfo) => {
-  // console.log("plantInfo.plantType en el frontend:", plantInfo.plantType);
+export const updateInstallationCurrentLevel = async (plantType) => {
+  console.log("plantType en el frontend:", plantType);
 
   try {
     const accessToken = localStorage.getItem('accessToken');
@@ -19,14 +19,13 @@ export const updateInstallationCurrentLevel = async (plantInfo) => {
       },
     });
 
-    // console.log("Respuesta en el frontend:", response.data.userPlanet.planets[0].installation[plantInfo.plantType]);
+    console.log("Respuesta en el frontend:", response.data.userPlanet.planets[0].installation[plantType]);
 
     if (
-      response?.data?.userPlanet?.planets[0]?.installation[plantInfo.plantType]
+      response?.data?.userPlanet?.planets[0]?.installation[plantType]
     ) {
       const currentLevel =
-        response.data.userPlanet.planets[0].installation[plantInfo.plantType]
-          .currentLevel;
+        response.data.userPlanet.planets[0].installation[plantType].currentLevel;
       console.log('el antiguo nivel es:', currentLevel);
 
       // Calcula el nuevo nivel sumando 1 al nivel actual
@@ -34,16 +33,12 @@ export const updateInstallationCurrentLevel = async (plantInfo) => {
       console.log('el nuevo nivel es:', newLevel);
 
       // Construye la URL con el valor dinámico de plantType
-      // const plantType = response.data.userPlanet.planets[0].installation[plantInfo].plantType;
-      const plantType = plantInfo.plantType;
-      console.log('plantType en el frontend:', plantType);
-
       const updatePlantLevelUrl = `/profile/plants/${plantType}/level`;
 
       // Realiza la solicitud POST al backend con la información actualizada de la planta
       await axios.post(
         updatePlantLevelUrl,
-        { ...plantInfo, newLevel },
+        { plantType, newLevel }, // Pass only plantType instead of plantInfo
         {
           headers: {
             Authorization: `Bearer ${accessToken}`,

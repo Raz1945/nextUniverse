@@ -20,3 +20,45 @@
   );
   background-size: cover;
 }
+
+/* Color Theme Swatches in Hex */
+.Meta-Skills-1-hex { color: #4A30F2; }
+.Meta-Skills-2-hex { color: #705CF2; }
+.Meta-Skills-3-hex { color: #3BBF8F; }
+.Meta-Skills-4-hex { color: #D96055; }
+.Meta-Skills-5-hex { color: #262626; }
+
+/* Color Theme Swatches in RGBA */
+.Meta-Skills-1-rgba { color: rgba(74, 48, 242, 1); }
+.Meta-Skills-2-rgba { color: rgba(112, 92, 242, 1); }
+.Meta-Skills-3-rgba { color: rgba(59, 191, 142, 1); }
+.Meta-Skills-4-rgba { color: rgba(216, 95, 84, 1); }
+.Meta-Skills-5-rgba { color: rgba(38, 38, 38, 1); }
+
+/* Color Theme Swatches in HSLA */
+.Meta-Skills-1-hsla { color: hsla(247, 88, 56, 1); }
+.Meta-Skills-2-hsla { color: hsla(247, 85, 65, 1); }
+.Meta-Skills-3-hsla { color: hsla(157, 52, 49, 1); }
+.Meta-Skills-4-hsla { color: hsla(5, 63, 59, 1); }
+.Meta-Skills-5-hsla { color: hsla(0, 0, 15, 1); }
+
+/* Color Theme Swatches in Hex */
+.Paddy-website-concept-1-hex { color: #DB2EF2; }
+.Paddy-website-concept-2-hex { color: #220859; }
+.Paddy-website-concept-3-hex { color: #190840; }
+.Paddy-website-concept-4-hex { color: #121126; }
+.Paddy-website-concept-5-hex { color: #26A646; }
+
+/* Color Theme Swatches in RGBA */
+.Paddy-website-concept-1-rgba { color: rgba(219, 46, 242, 1); }
+.Paddy-website-concept-2-rgba { color: rgba(33, 8, 89, 1); }
+.Paddy-website-concept-3-rgba { color: rgba(25, 7, 63, 1); }
+.Paddy-website-concept-4-rgba { color: rgba(17, 17, 38, 1); }
+.Paddy-website-concept-5-rgba { color: rgba(38, 165, 70, 1); }
+
+/* Color Theme Swatches in HSLA */
+.Paddy-website-concept-1-hsla { color: hsla(292, 88, 56, 1); }
+.Paddy-website-concept-2-hsla { color: hsla(258, 83, 19, 1); }
+.Paddy-website-concept-3-hsla { color: hsla(258, 78, 14, 1); }
+.Paddy-website-concept-4-hsla { color: hsla(241, 37, 10, 1); }
+.Paddy-website-concept-5-hsla { color: hsla(135, 62, 39, 1); }

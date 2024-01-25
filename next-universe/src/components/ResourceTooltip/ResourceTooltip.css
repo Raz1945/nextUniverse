@@ -10,6 +10,7 @@
   width: 200px;
   opacity: 0; /* Inicialmente, el tooltip estará oculto */
   transition: opacity 0.5s ease; /* Transición de opacidad */
+  z-index: -1;
 }
 
 /* Estilo para ocultar el borde superior del tooltip de ResourceIndicator */
@@ -25,6 +26,7 @@
 
 /* Estilo para mostrar el tooltip de ResourceIndicator */
 .show-tooltip {
+  z-index: 1;
   opacity: 1;
 }
 

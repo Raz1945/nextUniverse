@@ -1,8 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap');
 
 :root {
-
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  /* font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif; */
   line-height: 1.5;
+  font-family: 'Ubuntu', sans-serif;
   font-weight: 400;
 
   color-scheme: light dark;
@@ -76,25 +77,53 @@ button:focus-visible {
   }
 }
 
-
-
 /* Color Theme Swatches in Hex */
-.Electrys-|-EV-charging-app-1-hex { color: #6E34BF; }
-.Electrys-|-EV-charging-app-2-hex { color: #42208C; }
-.Electrys-|-EV-charging-app-3-hex { color: #2B1E59; }
-.Electrys-|-EV-charging-app-4-hex { color: #201740; }
-.Electrys-|-EV-charging-app-5-hex { color: #4EA66D; }
+.Electrys-|-EV-charging-app-1-hex {
+  color: #6e34bf;
+}
+.Electrys-|-EV-charging-app-2-hex {
+  color: #42208c;
+}
+.Electrys-|-EV-charging-app-3-hex {
+  color: #2b1e59;
+}
+.Electrys-|-EV-charging-app-4-hex {
+  color: #201740;
+}
+.Electrys-|-EV-charging-app-5-hex {
+  color: #4ea66d;
+}
 
 /* Color Theme Swatches in RGBA */
-.Electrys-|-EV-charging-app-1-rgba { color: rgba(109, 51, 191, 1); }
-.Electrys-|-EV-charging-app-2-rgba { color: rgba(66, 32, 140, 1); }
-.Electrys-|-EV-charging-app-3-rgba { color: rgba(43, 30, 89, 1); }
-.Electrys-|-EV-charging-app-4-rgba { color: rgba(31, 22, 63, 1); }
-.Electrys-|-EV-charging-app-5-rgba { color: rgba(77, 165, 108, 1); }
+.Electrys-|-EV-charging-app-1-rgba {
+  color: rgba(109, 51, 191, 1);
+}
+.Electrys-|-EV-charging-app-2-rgba {
+  color: rgba(66, 32, 140, 1);
+}
+.Electrys-|-EV-charging-app-3-rgba {
+  color: rgba(43, 30, 89, 1);
+}
+.Electrys-|-EV-charging-app-4-rgba {
+  color: rgba(31, 22, 63, 1);
+}
+.Electrys-|-EV-charging-app-5-rgba {
+  color: rgba(77, 165, 108, 1);
+}
 
 /* Color Theme Swatches in HSLA */
-.Electrys-|-EV-charging-app-1-hsla { color: hsla(264, 57, 47, 1); }
-.Electrys-|-EV-charging-app-2-hsla { color: hsla(258, 62, 33, 1); }
-.Electrys-|-EV-charging-app-3-hsla { color: hsla(253, 49, 23, 1); }
-.Electrys-|-EV-charging-app-4-hsla { color: hsla(253, 47, 17, 1); }
-.Electrys-|-EV-charging-app-5-hsla { color: hsla(140, 36, 47, 1); }
+.Electrys-|-EV-charging-app-1-hsla {
+  color: hsla(264, 57, 47, 1);
+}
+.Electrys-|-EV-charging-app-2-hsla {
+  color: hsla(258, 62, 33, 1);
+}
+.Electrys-|-EV-charging-app-3-hsla {
+  color: hsla(253, 49, 23, 1);
+}
+.Electrys-|-EV-charging-app-4-hsla {
+  color: hsla(253, 47, 17, 1);
+}
+.Electrys-|-EV-charging-app-5-hsla {
+  color: hsla(140, 36, 47, 1);
+}

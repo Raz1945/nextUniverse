@@ -1,4 +1,4 @@
-import axios from "../../api/axios";
+import axios from "../../../api/axios";
 
 const RESOURCE_URL = '/profile/resource';
 

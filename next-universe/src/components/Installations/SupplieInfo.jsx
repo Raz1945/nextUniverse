@@ -1,6 +1,6 @@
-import './installation.css' ;
+import './SupplieInfo.css';
 
-export const Installation = ({
+export const SupplieInfo = ({
   plantType,
   metalCost,
   crystalCost,

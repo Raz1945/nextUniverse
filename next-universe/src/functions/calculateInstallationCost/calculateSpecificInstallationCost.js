@@ -1,4 +1,6 @@
 export const calculateSpecificInstallationCost = (plantType, currentLevel) => {
+
+// todo Ver de hacer un json en el backend para los calculos de los costes 
   const costPlant = {
     metalMine: {
       metal: { base: 60, factor: 1.5, pow: currentLevel - 1 },
@@ -20,9 +22,24 @@ export const calculateSpecificInstallationCost = (plantType, currentLevel) => {
       crystal: { base: 30, factor: 1.5, pow: currentLevel - 1 },
       deuterium: { base: 0, factor: 0, pow: 0 },
     },
+    metalWarehouse: {
+      metal: { base: 1000, factor: 2, pow: currentLevel - 1 },
+      crystal: { base: 0, factor: 2, pow: currentLevel - 1 },
+      deuterium: { base: 0, factor: 2, pow: currentLevel - 1 },
+    },
+    crystalWarehouse: {
+      metal: { base: 1000, factor: 2, pow: currentLevel - 1 },
+      crystal: { base: 500, factor: 2, pow: currentLevel - 1 },
+      deuterium: { base: 0, factor: 2, pow: currentLevel - 1 },
+    },
+    deuteriumTank: {
+      metal: { base: 1000, factor: 2, pow: currentLevel - 1 },
+      crystal: { base: 1000, factor: 2, pow: currentLevel - 1 },
+      deuterium: { base: 0, factor: 2, pow: currentLevel - 1 },
+    },
   };
 
-  const metalCost = calculateResourceCost(costPlant[plantType].metal, currentLevel);
+  const metalCost = calculateResourceCost(costPlant[plantType]?.metal, currentLevel);
   const crystalCost = calculateResourceCost(costPlant[plantType]?.crystal, currentLevel);
   const deuteriumCost = calculateResourceCost(costPlant[plantType]?.deuterium, currentLevel);
 

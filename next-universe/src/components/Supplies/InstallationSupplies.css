@@ -1,0 +1,90 @@
+.supplie__wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: red;
+  width: 100%;
+  height: 100%;
+  margin-top: 1.5rem;
+  margin-left: 1rem;
+}
+
+.top{
+  display: flex;
+  background-color: #202020;
+  width: 100%;
+  height: 50%;
+}
+.bottom{
+  display: flex;
+  background-color: gray;
+  width: 100%;
+  height: 50%;
+}
+
+.project__card {
+  --padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 150px;
+  width: 150px;
+  border-radius: 1rem;
+  background-size: cover;
+  overflow: hidden;
+  position: relative;
+  transition: transform 0.4s ease;
+  background-position: center;
+  background-color: red; /* cambiar */
+  border: 2px outset red;
+  /* z-index: 1001; */
+}
+
+/* Superposición */
+.project__overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.4s ease;
+}
+
+/* Descripción del proyecto */
+.project__subcontent {
+  height: 5vh;
+  position: relative;
+  top:calc(135px + var(--padding) * -1);
+  transform: translateY(100%);
+  transition: transform 0.4s ease;
+  
+  text-align: center;
+  color: black;
+  font-weight: 500;
+  background-color: aqua;
+}
+
+/* Descripción del proyecto */
+.project__description {
+  font-size: 0.75em;
+  display: block;
+  white-space: pre-line;
+  z-index: 2;
+  line-height: 1.5;
+  margin: 0.25rem;
+}
+.project__description-text {
+  font-weight: 400;
+  transition: 0.7s ease-out;
+  margin-left: 0.25rem;
+}
+
+/* Animaciones de hover */
+.project__card:hover .project__overlay {
+  /* background-image: var(--gradient-to-up); */
+  background-image: red;
+}
+
+.project__card:hover .project__subcontent {
+  transform: translateY(0%);
+}
