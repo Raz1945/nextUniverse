@@ -1,18 +1,12 @@
-import { Link } from "react-router-dom"
-
+import { Outlet } from "react-router-dom"
+import '../styles/welcome.css'
 export const Welcome = () => {
   return (
-    <div>
-      <p>
-        Welcome to <strong>NextUniverse</strong>
-      </p>
-      <div>
-        <Link to={'/login'}>Sign In</Link>
-      </div>
-      <div>
-        <Link to={'/register'}>Sign Up</Link>
-
-      </div>
+    <div className="welcome__wrapper">
+      <picture className="welcome__picture">
+        <img src="../pictures/NextU-Portada_14.jpeg" alt="" className="welcome__img" />
+        </picture>
+      <Outlet />
     </div>
   )
 }

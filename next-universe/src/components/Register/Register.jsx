@@ -87,7 +87,7 @@ export const Register = () => {
           password: pwd,
         }),
         {
-          headers: { 'Content-Type': 'application/json' }, 
+          headers: { 'Content-Type': 'application/json' },
           withCredentials: true // habilitar el intercambio de credenciales en el contexto de políticas de seguridad de acceso a recursos entre dominios (CORS). Esto permite que las credenciales (como cookies) se incluyan en la solicitud si es necesario para autenticación y sesiones en el servidor.
         }
       );
@@ -116,44 +116,49 @@ export const Register = () => {
   };
 
   return (
-    <div>
-      <section>
+    <div className='register__wrapper'>
+      <section className='register__section'>
         <p ref={errRef} className={errMsg ? 'errmsg' : 'offscreen'} aria-live="assertive">
           {errMsg}
         </p>
-        <h1>Register</h1>
-        <form onSubmit={handleSubmit}>
-          <label htmlFor="username">
-            Username:
-            <span className={validName ? 'valid' : 'hide'}>
-              <FontAwesomeIcon icon={faCheck} />
-            </span>
-            <span className={validName || !user ? 'hide' : 'invalid'}>
-              <FontAwesomeIcon icon={faTimes} />
-            </span>
-          </label>
-          <input
-            type="text"
-            id="username"
-            ref={userRef}
-            autoComplete="off"
-            value={user}
-            onChange={(e) => setUser(e.target.value)}
-            required
-            aria-invalid={validName ? 'false' : 'true'}
-            aria-describedby="uidnote"
-            onFocus={() => setUserFocus(true)}
-            onBlur={() => setUserFocus(false)}
-          />
-          <p id="uidnote" className={userFocus && user && !validName ? 'instructions' : 'offscreen'}>
-            <FontAwesomeIcon icon={faInfoCircle} />
-            4 to 20 characters.<br />
-            Must begin with a letter.<br />
-            Letters, numbers, underscores, hyphens allowed.
-          </p>
+        <h1 className="register__title">Let&apos;s Get Started</h1>
 
-          <label htmlFor="email">
-            Email:
+        <form className="register__form" onSubmit={handleSubmit}>
+          {/* <label htmlFor="username" className={"register__label"}>
+          </label> */}
+          <div className='register__input-relative'>
+            <input
+              type="text"
+              id="username"
+              ref={userRef}
+              autoComplete="off"
+              value={user}
+              onChange={(e) => setUser(e.target.value)}
+              required
+              aria-invalid={validName ? 'false' : 'true'}
+              aria-describedby="uidnote"
+              onFocus={() => setUserFocus(true)}
+              onBlur={() => setUserFocus(false)}
+              placeholder='Username'
+              className={`register__input ${validName ? 'valid' : ''} ${validName || !user ? '' : 'invalid'}`}
+            />
+            <div className={`instructions__wrapper ${userFocus && user && !validName ? 'onscreen' : ''}`}>
+              <div className='instructions__text_wrapper'>
+                <FontAwesomeIcon icon={faInfoCircle} />
+                <span id="uidnote" className="instructions__text">
+                  4 to 20 characters.<br />
+                  Must begin with a letter.<br />
+                  Letters, numbers, underscores, hyphens allowed.
+                </span>
+              </div>
+            </div>
+          </div>
+
+
+
+
+
+          <label htmlFor="email" className='register__label'>
             <span className={validEmail ? 'valid' : 'hide'}>
               <FontAwesomeIcon icon={faCheck} />
             </span>
@@ -171,16 +176,17 @@ export const Register = () => {
             required
             aria-invalid={validEmail ? 'false' : 'true'}
             aria-describedby="emailnote"
+            placeholder='Email'
             onFocus={() => setEmailFocus(true)}
             onBlur={() => setEmailFocus(false)}
+            className="register__input"
           />
           <p id="emailnote" className={emailFocus && email && !validEmail ? 'instructions' : 'offscreen'}>
             <FontAwesomeIcon icon={faInfoCircle} />
             Must be a valid email address.
           </p>
 
-          <label htmlFor="password">
-            Password:
+          <label htmlFor="password" className='register__label'>
             <span className={validPwd ? 'valid' : 'hide'}>
               <FontAwesomeIcon icon={faCheck} />
             </span>
@@ -196,8 +202,10 @@ export const Register = () => {
             required
             aria-invalid={validPwd ? 'false' : 'true'}
             aria-describedby="pwdnote"
+            placeholder='Password'
             onFocus={() => setPwdFocus(true)}
             onBlur={() => setPwdFocus(false)}
+            className="register__input"
           />
           <p id="pwdnote" className={pwdFocus && !validPwd ? 'instructions' : 'offscreen'}>
             <FontAwesomeIcon icon={faInfoCircle} />
@@ -206,8 +214,7 @@ export const Register = () => {
             Allowed special characters: !, @, #, $, %.
           </p>
 
-          <label htmlFor="confirm_pwd">
-            Confirm Password:
+          <label htmlFor="confirm_pwd" className='register__label'>
             <span className={validMatch && matchPwd ? 'valid' : 'hide'}>
               <FontAwesomeIcon icon={faCheck} />
             </span>
@@ -223,21 +230,23 @@ export const Register = () => {
             required
             aria-invalid={validMatch ? 'false' : 'true'}
             aria-describedby="confirmnote"
+            placeholder='Confirm password'
             onFocus={() => setMatchFocus(true)}
             onBlur={() => setMatchFocus(false)}
+            className="register__input"
           />
           <p id="confirmnote" className={matchFocus && !validMatch ? 'instructions' : 'offscreen'}>
             <FontAwesomeIcon icon={faInfoCircle} />
             Must match the first password input field.
           </p>
 
-          <button disabled={!validName || !validEmail || !validPwd || !validMatch}>Sign up</button>
+          <button className="button-34 " disabled={!validName || !validEmail || !validPwd || !validMatch}>Sign up</button>
         </form>
         <p>
           Already registered?<br />
           <span className="line">
             {/* Agrega un enlace de ruta al login */}
-            <a href="#">Sign in</a>
+            <a href="login">Sign in</a>
           </span>
         </p>
       </section>

@@ -7,7 +7,7 @@
   border-radius: 1rem;
   padding: 10px;
   z-index: 1000;
-  width: 200px;
+  width: 170px;
   opacity: 0; /* Inicialmente, el tooltip estará oculto */
   transition: opacity 0.5s ease; /* Transición de opacidad */
   z-index: -1;
@@ -35,13 +35,15 @@
   display: flex;
   gap: 5px;
   align-items: center;
-  font-size: 12px;
+  font-size: 11px;
+  /* Cambiar Tamaño a uno var(--fs) */
   color: #f8f9fa;
 }
 
 /* Estilo para el título del tooltip de ResourceIndicator */
 .tooltip__title {
-  font-size: 1em;
+  font-size: 12px;
+  /* Cambiar Tamaño a uno var(--fs) */
   text-transform: capitalize;
   margin: 0;
 }

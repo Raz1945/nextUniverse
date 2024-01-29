@@ -1,95 +1,190 @@
-.App {
+.register__wrapper {
+  display: flex;
+  width: 50%;
+  height: 100vh;
+}
+
+.register__section {
+  --bg: hsla(0, 0%, 0%, 0.2);
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 100%;
+  height: auto;
+  padding: 3rem;
+  background-color: var(--bg);
+}
+
+.register__title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.5em;
+  letter-spacing: 1px;
+  font-weight: 500;
+  width: 70%;
+  margin-bottom: 0;
+}
+
+.register__form {
+  width: 25vw;
+  height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  min-height: 100vh; 
-  padding: 1rem 0.5rem;
+  gap: 1rem;
+  /* justify-content: space-between; */
+  margin: 2rem;
+  /* background-color: aquamarine; */
 }
 
-section {
-    width: 100%;
-    max-width: 420px;
-    min-height: 400px;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    padding: 1rem;
-    background-color: rgba(0,0,0,0.4);
+a,
+a:visited {
+  color: #fff;
+}
+.register__input-relative{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 100%;
+  background-color: aquamarine;
 }
 
-form {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    flex-grow: 1;
-    padding-bottom: 1rem;
-}
-
-a, a:visited {
-    color: #fff;
-}
-
-input[type="text"],
-input[type="password"],
-button,
-textarea {
-  font-family: 'Nunito', sans-serif;
-  font-size: 22px;
-  padding: 0.25rem;
+.register__input {
+  padding-block: 0.75rem;
+  padding-inline: 0.5rem 0.75rem;
+  border-style: none;
   border-radius: 0.5rem;
-}
-
-label,
-button {
-  margin-top: 1rem;
-}
-
-button {
-  padding: 0.5rem;
-}
-
-.instructions {
-    font-size: 0.75rem;
-    border-radius: 0.5rem;
-    background: #000;
-    color: #fff;
-    padding: 0.25rem;
-    position: relative;
-    bottom: -10px;
-}
-
-.instructions > svg {
-    margin-right: 0.25rem;
-}
-
-.offscreen {
-    position: absolute;
-    left: -9999px;
-}
-
-.hide {
-    display: none;
+  text-align: start;
+  text-transform: capitalize;
+  letter-spacing: 1px;
+  font-size: 12px;
+  font-weight: 300;
+  width: 100%;
+  background-image: linear-gradient(
+    to right,
+    hsl(0, 0%, 0%, 0.1),
+    hsl(0, 0%, 0%, 0.5)
+  );
 }
 
 .valid {
-    color: limegreen;
-    margin-left: 0.25rem;
+  /* color: limegreen; */
+  background-image: linear-gradient(
+    to right,
+    hsla(134, 100%, 40%, 0.2),
+    hsl(134, 100%, 50%, 0.4)
+  );
+}
+.valid:focus,
+.valid:focus-visible {
+  outline: 1px solid green;
 }
 
 .invalid {
-    color: red;
-    margin-left: 0.25rem;
+  /* color: red; */
+  background-image: linear-gradient(
+    to right,
+    hsl(0, 100%, 50%, 0.2),
+    hsl(0, 100%, 50%, 0.4)
+  );
+}
+.invalid:focus,
+.invalid:focus-visible {
+  outline: 1px solid hsl(0, 100%, 50%);
 }
 
+.button-34 {
+  background: #5e5df0;
+  border-radius: 0.5rem;
+  box-shadow: #5e5df0 0 10px 20px -10px;
+  box-sizing: border-box;
+  color: #ffffff;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 400;
+  letter-spacing: 1px;
+  text-transform: capitalize;
+  outline: 0 solid transparent;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  width: fit-content;
+  word-break: break-word;
+  border: 0;
+  width: 90%;
+  padding-inline: 0.5rem 0.75rem;
+  margin-bottom: 1rem;
+}
+
+
+
+
+/* asdada */
+
+.instructions__wrapper {
+  position: absolute;
+  top: 45px;
+  background-color: hsla(237, 86%, 64%, 0.8);
+  border: 2px solid #646cff;
+  border-radius: 1rem;
+  padding: 10px;
+  z-index: 1000;
+  width: 200px;
+  opacity: 0; /* Inicialmente estará oculto */
+  display: none;
+  transition: opacity 0.5s ease; /* Transición de opacidad */
+  z-index: -1;
+}
+
+.instructions__wrapper::before {
+  content: '';
+  position: absolute;
+  top: -13px;
+  left: 50%;
+  border: 5px solid transparent;
+  border-bottom: 8px solid var(--clr-91); /* Color de la flecha del tooltip */
+  transform: translateX(-50%);
+}
+
+.onscreen {
+  z-index: 1;
+  opacity: 1;
+  display: block;
+}
+
+.instructions__text_wrapper{
+  display: flex;
+  gap: 5px;
+}
+
+.instructions__text {
+  margin-left: 0.25rem;
+  font-size: 11px;
+  /* letter-spacing: 1px; */
+  /* Cambiar Tamaño a uno var(--fs) */
+  color: #f8f9fa;
+}
+
+
+
+.hide {
+  display: none;
+}
+
+
+
 .errmsg {
-    background-color: lightpink;
-    color: firebrick;
-    font-weight: bold;
-    padding: 0.5rem;
-    margin-bottom: 0.5rem;
+  background-color: lightpink;
+  color: firebrick;
+  font-weight: bold;
+  padding: 0.5rem;
+  margin-bottom: 0.5rem;
 }
 
 .line {
-    display: inline-block;
+  display: inline-block;
 }
+

@@ -48,9 +48,14 @@ export const AppRoutes = createBrowserRouter([
     path: '/',
     element: <Layout />,
     children: [
-      { index: true, element: <Welcome /> }, // Ruta a la página de inicio
-      { path: 'login', element: <Login /> },
-      { path: 'register', element: <Register /> },
+      {
+        path: '', // Ruta a la página de inicio
+        element: <Welcome />,  // Ruta a la página de inicio
+        children: [
+          { path: 'login',index:true, element: <Login /> },
+          { path: 'register',index:false, element: <Register /> },
+        ],
+      },
       {
         element: <RequireAuth />,
         children: [

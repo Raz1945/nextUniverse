@@ -5,13 +5,11 @@ import { useInstallationLogic } from "../hooks/useInstallationLogic";
 import { useSelector, useDispatch } from "react-redux";
 
 export const Installations = () => {
-  // usamos el hook useSelector para obtener el estado de las instalaciones desde el store
   const installationState = useSelector((state) => state.installation);
 
-  // usamos el hook useDispatch para obtener una función que nos permite despachar acciones al store
   const dispatch = useDispatch();
 
-  // usamos el custom hook que hemos creado para obtener las funciones que necesitamos
+
   const { handleOnClickUpdate, handleOnClickCancel, handleOnClickDestroy } =
     useInstallationLogic(installationState, dispatch);
 
@@ -22,13 +20,13 @@ export const Installations = () => {
       crystalCost: installationState.metalMine.crystalCost,
       deuteriumCost: installationState.metalMine.deuteriumCost,
       currentLevel: installationState.metalMine.level,
-      countdown: installationState.metalMine.countdown,
+      countdown: installationState.metalMine.countdown || "1 minuto",
     },
   ];
 
-  console.log('el costo de metal de la instalación es:', installations[0].metalCost);
-  console.log('el nivel de la instalación es:', installations[0].currentLevel);
-  console.log('el temporizador de la instalación es:', installations[0].countdown);
+  // console.log('el costo de metal de la instalación es:', installations[0].metalCost);
+  // console.log('el nivel de la instalación es:', installations[0].currentLevel);
+  // console.log('el temporizador de la instalación es:', installations[0].countdown);
   
   return (
     <InstallationSupplies
