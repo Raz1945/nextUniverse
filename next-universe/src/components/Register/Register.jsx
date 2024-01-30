@@ -4,13 +4,12 @@
 
 
 import { useRef, useState, useEffect } from 'react';
-import { faCheck, faTimes, faInfoCircle } from '@fortawesome/free-solid-svg-icons'; // Cambiar iconos
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import axios from '../../api/axios';
 
 import './Register.css';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { RegisterInstruction } from './components/Register.Instructions';
 
 const USER_REGEX = /^[a-zA-Z0-9_-]{4,20}$/;
 const EMAIL_REGEX = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -118,15 +117,12 @@ export const Register = () => {
   return (
     <div className='register__wrapper'>
       <section className='register__section'>
-        <p ref={errRef} className={errMsg ? 'errmsg' : 'offscreen'} aria-live="assertive">
-          {errMsg}
-        </p>
         <h1 className="register__title">Let&apos;s Get Started</h1>
 
         <form className="register__form" onSubmit={handleSubmit}>
-          {/* <label htmlFor="username" className={"register__label"}>
-          </label> */}
-          <div className='register__input-relative'>
+          {/* user */}
+          <label htmlFor="username" className="visually-hidden">Username</label>
+          <div className='relative'>
             <input
               type="text"
               id="username"
@@ -142,114 +138,96 @@ export const Register = () => {
               placeholder='Username'
               className={`register__input ${validName ? 'valid' : ''} ${validName || !user ? '' : 'invalid'}`}
             />
-            <div className={`instructions__wrapper ${userFocus && user && !validName ? 'onscreen' : ''}`}>
-              <div className='instructions__text_wrapper'>
-                <FontAwesomeIcon icon={faInfoCircle} />
-                <span id="uidnote" className="instructions__text">
-                  4 to 20 characters.<br />
-                  Must begin with a letter.<br />
-                  Letters, numbers, underscores, hyphens allowed.
-                </span>
-              </div>
-            </div>
+            <RegisterInstruction focus={userFocus} refe={user} valid={validName}>
+              4 to 20 characters.<br />
+              Must begin with a letter.<br />
+              Letters, numbers, underscores, hyphens allowed.
+            </RegisterInstruction>
+          </div>
+          {/* email */}
+          <label htmlFor="email" className='visually-hidden'>Email</label>
+          <div className='relative'>
+            <input
+              type="email"
+              id="email"
+              ref={emailRef}
+              autoComplete="off"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+              aria-invalid={validEmail ? 'false' : 'true'}
+              aria-describedby="emailnote"
+              onFocus={() => setEmailFocus(true)}
+              onBlur={() => setEmailFocus(false)}
+              placeholder='Email'
+              className={`register__input ${validEmail ? 'valid' : ''} ${validEmail || !email ? '' : 'invalid'}`}
+            />
+            <RegisterInstruction id="emailnote" focus={emailFocus} refe={email} valid={validEmail}>
+              Must be a valid email address.
+            </RegisterInstruction>
+          </div>
+          {/* password */}
+          <label htmlFor="password" className='visually-hidden'>Password</label>
+          <div className='relative'>
+            <input
+              type="password"
+              id="password"
+              value={pwd}
+              onChange={(e) => setPwd(e.target.value)}
+              required
+              aria-invalid={validPwd ? 'false' : 'true'}
+              aria-describedby="pwdnote"
+              onFocus={() => setPwdFocus(true)}
+              onBlur={() => setPwdFocus(false)}
+              placeholder='Password'
+              className={`register__input ${validPwd ? 'valid' : ''} ${validPwd || !pwd ? '' : 'invalid'}`}
+            />
+            <RegisterInstruction focus={pwdFocus} refe={pwd} valid={validPwd}>
+              8 to 20 characters.<br />
+              Must include uppercase and lowercase letters, a number, and a special character.<br />
+              Allowed special characters: !, @, #, $, %.
+            </RegisterInstruction>
+          </div>
+          {/* confirm_password */}
+          <label htmlFor="confirm_pwd" className='visually-hidden'>Confirm password</label>
+          <div className='relative'>
+            <input
+              type="password"
+              id="confirm_pwd"
+              value={matchPwd}
+              onChange={(e) => setMatchPwd(e.target.value)}
+              required
+              aria-invalid={validMatch ? 'false' : 'true'}
+              aria-describedby="confirmnote"
+              onFocus={() => setMatchFocus(true)}
+              onBlur={() => setMatchFocus(false)}
+              placeholder='Confirm password'
+
+              className={`register__input ${validMatch && matchPwd !== '' ? 'valid' : ''} ${validMatch || !matchPwd ? '' : 'invalid'}`}
+
+            />
+
+            <RegisterInstruction focus={matchFocus} refe={matchPwd} valid={validMatch}>
+              Must match the first password input field.
+            </RegisterInstruction>
           </div>
 
+          <button className="button-34" disabled={!validName || !validEmail || !validPwd || !validMatch}>Sign up</button>
 
-
-
-
-          <label htmlFor="email" className='register__label'>
-            <span className={validEmail ? 'valid' : 'hide'}>
-              <FontAwesomeIcon icon={faCheck} />
-            </span>
-            <span className={validEmail || !email ? 'hide' : 'invalid'}>
-              <FontAwesomeIcon icon={faTimes} />
-            </span>
-          </label>
-          <input
-            type="email"
-            id="email"
-            ref={emailRef}
-            autoComplete="off"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-            aria-invalid={validEmail ? 'false' : 'true'}
-            aria-describedby="emailnote"
-            placeholder='Email'
-            onFocus={() => setEmailFocus(true)}
-            onBlur={() => setEmailFocus(false)}
-            className="register__input"
-          />
-          <p id="emailnote" className={emailFocus && email && !validEmail ? 'instructions' : 'offscreen'}>
-            <FontAwesomeIcon icon={faInfoCircle} />
-            Must be a valid email address.
+          <p ref={errRef} className={errMsg ? "errmsg" : "visually-hidden"} aria-live="assertive">
+            {errMsg}
           </p>
-
-          <label htmlFor="password" className='register__label'>
-            <span className={validPwd ? 'valid' : 'hide'}>
-              <FontAwesomeIcon icon={faCheck} />
-            </span>
-            <span className={validPwd || !pwd ? 'hide' : 'invalid'}>
-              <FontAwesomeIcon icon={faTimes} />
-            </span>
-          </label>
-          <input
-            type="password"
-            id="password"
-            value={pwd}
-            onChange={(e) => setPwd(e.target.value)}
-            required
-            aria-invalid={validPwd ? 'false' : 'true'}
-            aria-describedby="pwdnote"
-            placeholder='Password'
-            onFocus={() => setPwdFocus(true)}
-            onBlur={() => setPwdFocus(false)}
-            className="register__input"
-          />
-          <p id="pwdnote" className={pwdFocus && !validPwd ? 'instructions' : 'offscreen'}>
-            <FontAwesomeIcon icon={faInfoCircle} />
-            8 to 20 characters.<br />
-            Must include uppercase and lowercase letters, a number, and a special character.<br />
-            Allowed special characters: !, @, #, $, %.
-          </p>
-
-          <label htmlFor="confirm_pwd" className='register__label'>
-            <span className={validMatch && matchPwd ? 'valid' : 'hide'}>
-              <FontAwesomeIcon icon={faCheck} />
-            </span>
-            <span className={validMatch || !matchPwd ? 'hide' : 'invalid'}>
-              <FontAwesomeIcon icon={faTimes} />
-            </span>
-          </label>
-          <input
-            type="password"
-            id="confirm_pwd"
-            value={matchPwd}
-            onChange={(e) => setMatchPwd(e.target.value)}
-            required
-            aria-invalid={validMatch ? 'false' : 'true'}
-            aria-describedby="confirmnote"
-            placeholder='Confirm password'
-            onFocus={() => setMatchFocus(true)}
-            onBlur={() => setMatchFocus(false)}
-            className="register__input"
-          />
-          <p id="confirmnote" className={matchFocus && !validMatch ? 'instructions' : 'offscreen'}>
-            <FontAwesomeIcon icon={faInfoCircle} />
-            Must match the first password input field.
-          </p>
-
-          <button className="button-34 " disabled={!validName || !validEmail || !validPwd || !validMatch}>Sign up</button>
+          
         </form>
-        <p>
-          Already registered?<br />
-          <span className="line">
-            {/* Agrega un enlace de ruta al login */}
-            <a href="login">Sign in</a>
-          </span>
-        </p>
+
+        <div className='alredy__wrapper'>
+          <p className='alredy__'>
+            Already have an account?
+            <a href="login" className='alredy__anchor'>Sign in</a>
+          </p>
+        </div>
+
       </section>
-    </div>
+    </div >
   );
 };

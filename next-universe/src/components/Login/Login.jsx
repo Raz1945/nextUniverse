@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from 'react';
 import useAuth from '../../hooks/useAuth';
 
 import axios from '../../api/axios';
+import './Login.css';
 const LOGIN_URL = '/login';
 
 export const Login = () => {
@@ -73,39 +74,60 @@ export const Login = () => {
   };
 
   return (
-    <section>
-      <h1>Login</h1>
-      <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">
-        {errMsg}
-      </p>
-      <h1>Sign In</h1>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="username">Username:</label>
-        <input
-          type="text"
-          id="username"
-          ref={userRef}
-          autoComplete="off"
-          onChange={(e) => setUser(e.target.value)}
-          value={user}
-          required
-        />
-        <label htmlFor="password">Password:</label>
-        <input
-          type="password"
-          id="password"
-          onChange={(e) => setPwd(e.target.value)}
-          value={pwd}
-          required
-        />
-        <button>Sign In</button>
-      </form>
-      <p>
-        Need an Account?<br />
-        <span className='line'>
-          <a href="/register">Sign Up</a>
-        </span>
-      </p>
-    </section>
+    <div className="login__wrapper">
+      <section className='login__section'>
+
+        <h1 className="login__title">
+          Welcome back, let&apos;s continue!
+        </h1>
+
+        <form className="login__form" onSubmit={handleSubmit}>
+
+          {/* user */}
+          <label htmlFor="username" className="visually-hidden">Username</label>
+          <div className="relative">
+            <input
+              type="text"
+              id="username"
+              ref={userRef}
+              autoComplete="off"
+              onChange={(e) => setUser(e.target.value)}
+              value={user}
+              required
+              placeholder='Username'
+              className='login__input'
+            />
+          </div>
+
+          <div className="relative">
+            <label htmlFor="password" className="visually-hidden">Password:</label>
+            <input
+              type="password"
+              id="password"
+              onChange={(e) => setPwd(e.target.value)}
+              value={pwd}
+              required
+              placeholder='Password'
+              className='login__input'
+            />
+          </div>
+
+
+          <button className="button-34">Sign In</button>
+          <p ref={errRef} className={errMsg ? "errmsg" : "visually-hidden"} aria-live="assertive">
+            {errMsg}
+          </p>
+        </form>
+
+        <div className='alredy__wrapper'>
+          <p className='alredy__'>
+            Need an Account?
+            <a href="/register" className='alredy__anchor'>Sign Up</a>
+          </p>
+        </div>
+
+      </section>
+    </div>
+
   )
 }

@@ -32,6 +32,12 @@
   --clr-90: #747bff;
   --clr-91: #646cff;
   --clr-92: #535bf2;
+
+  --shadow-color: 240deg 64% 40%;
+  --shadow-elevation-medium: 0.3px 0.5px 0.7px hsl(var(--shadow-color) / 0.25),
+    0.9px 1.9px 2.6px -0.6px hsl(var(--shadow-color) / 0.31),
+    2.2px 4.3px 6px -1.2px hsl(var(--shadow-color) / 0.36),
+    5px 10px 13.8px -1.7px hsl(var(--shadow-color) / 0.42);
 }
 
 body {
