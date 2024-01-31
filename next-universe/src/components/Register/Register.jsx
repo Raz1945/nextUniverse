@@ -214,10 +214,6 @@ export const Register = () => {
 
           <button className="button-34" disabled={!validName || !validEmail || !validPwd || !validMatch}>Sign up</button>
 
-          <p ref={errRef} className={errMsg ? "errmsg" : "visually-hidden"} aria-live="assertive">
-            {errMsg}
-          </p>
-          
         </form>
 
         <div className='alredy__wrapper'>
@@ -227,6 +223,11 @@ export const Register = () => {
           </p>
         </div>
 
+        <div className='errRef'>
+          <p ref={errRef} className={`errmsg ${errMsg ? "visible" : ""}`} aria-live="assertive">
+            {errMsg}
+          </p>
+        </div>
       </section>
     </div >
   );

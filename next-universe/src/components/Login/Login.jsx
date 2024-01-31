@@ -114,9 +114,7 @@ export const Login = () => {
 
 
           <button className="button-34">Sign In</button>
-          <p ref={errRef} className={errMsg ? "errmsg" : "visually-hidden"} aria-live="assertive">
-            {errMsg}
-          </p>
+
         </form>
 
         <div className='alredy__wrapper'>
@@ -126,6 +124,11 @@ export const Login = () => {
           </p>
         </div>
 
+        <div className='errRef'>
+          <p ref={errRef} className={`errmsg ${errMsg ? "visible" : ""}`} aria-live="assertive">
+            {errMsg}
+          </p>
+        </div>
       </section>
     </div>
 

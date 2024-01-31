@@ -1,7 +1,7 @@
 /* Layout */
 .login__wrapper {
   --bg: hsla(0, 0%, 0%, 0.2);
-  
+
   display: flex;
   align-items: center;
   justify-content: center;
@@ -16,7 +16,9 @@
   justify-content: center;
   flex-direction: column;
   width: 100%;
+  height: max-content;
   padding: 3rem;
+  position: relative;
 }
 
 .login__title {
@@ -89,6 +91,7 @@
 }
 
 .button-34:hover {
+  background: rgb(72, 72, 231);
   box-shadow: var(--shadow-elevation-medium);
 }
 
@@ -123,10 +126,44 @@
   text-decoration: none;
 }
 
+.errRef {
+  position: absolute;
+  bottom: -15px;
+  left: 25%;
+  width: 50%;
+}
+
 .errmsg {
+  font-size: 8px;
+  font-weight: 300;
+  text-indent: 1px;
   color: #ffc857;
-  display: flex;
+  text-align: center;
   margin: 0;
   padding: 0;
-  /* opacity: 0; */
+  opacity: 0;
+  transition: opacity 0.3s ease-in;
+}
+
+.errmsg.visible {
+  opacity: 1;
+}
+
+.login__input:focus,
+.login__input:focus-visible {
+  outline: 1px solid var(--clr-91);
+  box-shadow: 2px 1px 2px 0.5px var(--clr-92);
+}
+
+.button-34:focus,
+.button-34:focus-visible {
+  outline: 1px solid var(--clr-91);
+  box-shadow: 2px 1px 2px 0.5px var(--clr-92);
+  background: #4848e7;
+}
+.alredy__anchor:focus,
+.alredy__anchor:focus-visible{
+  outline-offset: 2px;
+  outline: 1px solid #ffc857;
+  border-radius: 0.25rem;
 }
