@@ -1,0 +1,44 @@
+{
+  "name": "backend_nextu",
+  "version": "1.0.0",
+  "description": "Node.js, Express and MongoDB",
+  "type": "module",
+  "main": "app.js",
+  "scripts": {
+    "testAuth": "node src/scripts/testAuth.mjs",
+    "envTest": "node src/scripts/envTest.mjs",
+
+    "atlas:dev-start": "node src/scripts/devStart.mjs",
+    "atlas:update-ip": "node src/scripts/updateIP.mjs",
+    "atlas:clean-access-list": "node src/scripts/cleanAccessList.mjs",
+    "atlas:add-ip": "node src/scripts/addIP.mjs",
+
+
+    "dev": "nodemon app.js",
+    "start": "node app.js",
+    "lint": "echo \"Agregar linter si lo necesitás\"",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "nodejs",
+    "express",
+    "rest",
+    "api",
+    "mongodb"
+  ],
+  "author": "marandev",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.10.0",
+    "bcrypt": "^5.1.1",
+    "cors": "^2.8.5",
+    "digest-fetch": "^3.1.1",
+    "dotenv": "^16.6.1",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^7.5.3"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}

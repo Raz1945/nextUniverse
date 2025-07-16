@@ -1,3 +1,9 @@
+# Error
+Hay un error a la hora de aumenttar el nivel de una instalacion
+
+
+
+
 # Cosas a implementar 
 - el consumo de energia dependiendo del   nivel y tipo de planta
 
