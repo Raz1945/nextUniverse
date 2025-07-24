@@ -29,7 +29,9 @@ export const ResourceManagement = () => {
         },
       });
 
-      return response.data.userPlanet;
+      const { Planet } = response.data;
+      return Planet;
+
     } catch (error) {
       console.error('Error al obtener datos:', error);
       throw error;
@@ -40,28 +42,32 @@ export const ResourceManagement = () => {
     try {
       const planetData = await fetchData();
 
+      
       // Ver
       const initialResourceValues = {
-        metal: planetData.resources.metal,
+        metal: planetData.planets[0].resources.metal,
         metalPerHrs: 0,
         metalStorage: 0,
         metalStorageHiden: 0,
-        crystal: planetData.resources.crystal,
+        crystal: planetData.planets[0].resources.crystal,
         crystalPerHrs: 0,
         crystalStorage: 0,
         crystalStorageHiden: 0,
-        deuterium: planetData.resources.deuterium,
+        deuterium: planetData.planets[0].resources.deuterium,
         deuteriumPerHrs: 0,
         deuteriumStorage: 0,
         deuteriumStorageHiden: 0,
         energy: 0,
       };
+      console.log('Valores iniciales de recursos:', initialResourceValues);
 
       setResourceValues(initialResourceValues);
     } catch (error) {
       console.error('Error al obtener los valores iniciales de recursos:', error);
     }
   };
+
+
 
   const updateResourceValues = async () => {
     try {

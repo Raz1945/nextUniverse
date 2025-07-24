@@ -2,6 +2,7 @@ import dotenv from 'dotenv';
 dotenv.config({ path: './src/config/.env' }); // Ruta personalizada si el .env está ahí
 
 import mongoose from 'mongoose';
+import { ObjectId } from 'mongodb';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 
@@ -157,11 +158,12 @@ const login = async (req, res) => {
   }
 };
 
+// No funciona
 const getUserProfile = async (req, res) => {
   try {
     const userId = req.user.id;
 
-    // console.log('User ID:', userId);
+    console.log('User ID:', userId, 'typeof:', typeof userId);
 
     if (!userId) {
       return res.status(401).json({ message: 'Unauthorized' });
@@ -170,26 +172,30 @@ const getUserProfile = async (req, res) => {
     // Consulta para obtener el perfil del usuario excluyendo la contraseña
     const user = await User.findById(userId, '-password');
 
-    // console.log('User Profile:', user);
+    console.log('User Profile:', user);
 
     if (!user) {
       return res.status(404).json({ message: 'User not found' });
     }
 
+    // Convierte userId a ObjectId si es string
+    const userIdObj = typeof userId === 'string' ? new mongoose.Types.ObjectId(userId) : userId;
+
     // Consulta para obtener información del planeta asociado al usuario
-    const Planet = await Planet.findOne({ user_id: userId });
+    const userPlanet = await Planet.findOne({ user_id: userIdObj });
 
-    // console.log('User Planet:', Planet);
+    console.log('User Planet:', userPlanet);
 
-    if (!Planet) {
+
+    // Combina la información del usuario y el planeta (puede ser null)
+    const userProfileWithPlanet = {
+      user: user.toObject(),
+      Planet: userPlanet ? userPlanet.toObject() : null,
+    };
+
+    if (!userPlanet) {
       return res.status(404).json({ message: 'Planet not found for the user' });
     }
-
-    // Combina la información del usuario y el planeta
-    const userProfileWithPlanet = {
-      user: user.toObject(), // Convierte el objeto mongoose a un objeto JS simple
-      Planet: Planet.toObject(), // Convierte el objeto mongoose a un objeto JS simple
-    };
 
     res.status(200).json(userProfileWithPlanet);
   } catch (error) {
@@ -204,6 +210,8 @@ const getUserProfile = async (req, res) => {
 const updateResourceValue = async (req, res) => {
   try {
     const userId = req.user.id;
+    const userIdObj = new mongoose.Types.ObjectId(userId);
+
     const {
       metalProduction,
       crystalProduction,
@@ -215,7 +223,7 @@ const updateResourceValue = async (req, res) => {
 
     // Actualiza el perfil del usuario en la base de datos
     const updatedUserPlanet = await Planet.findOneAndUpdate(
-      { user_id: userId },
+      { user_id: userIdObj },
       {
         $set: {
           'resources.metal': metalProduction,
@@ -226,7 +234,7 @@ const updateResourceValue = async (req, res) => {
       }
     );
 
-    // todo  ver el terma de si mostrar los datos 'profile' 
+    // todo  ver el terma de si mostrar los datos 'profile'
     res.status(200).json({
       message: 'Production values saved successfully',
       profile: updatedUserPlanet,
@@ -237,9 +245,4 @@ const updateResourceValue = async (req, res) => {
   }
 };
 
-export {
-  register,
-  login,
-  getUserProfile,
-  updateResourceValue
-};
+export { register, login, getUserProfile, updateResourceValue };

@@ -7,6 +7,9 @@ Me sumerjo en el desarrollo de la interfaz de juego, gestiono el almacenamiento 
 
 
 # Usuario de prueba
-
-Test01
+test01
 Asd1234!
+
+
+# Scripts
+Se generan diferentes script para facilitar ciertos funcionamientos, pero mi principal idea era agregar mi ip a Mongo, ya que es dinamica, pero debido a factores de seguridad o que desconozco no logre hacerlo funcionar sin antes agregar manualmente mi current ip  

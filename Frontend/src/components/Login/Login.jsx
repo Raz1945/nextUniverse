@@ -51,8 +51,8 @@ export const Login = () => {
       const roles = response?.data?.roles;
 
       // Guardar el token en localStorage
-      // localStorage.setItem('accessToken', accessToken);
-
+      localStorage.setItem('accessToken', accessToken);
+      console.log("Token guardado en localStorage:", accessToken);
 
       // setAuth({ user, pwd, roles, accessToken });
       setAuth({ user, roles, accessToken });

@@ -55,7 +55,7 @@
   border-style: none;
   border-radius: 0.5rem;
   text-align: start;
-  text-transform: capitalize;
+  /* text-transform: capitalize; */
   letter-spacing: 1px;
   font-size: 12px;
   font-weight: 300;
