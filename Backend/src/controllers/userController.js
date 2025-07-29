@@ -163,7 +163,7 @@ const getUserProfile = async (req, res) => {
   try {
     const userId = req.user.id;
 
-    console.log('User ID:', userId, 'typeof:', typeof userId);
+    // console.log('User ID:', userId, 'typeof:', typeof userId);
 
     if (!userId) {
       return res.status(401).json({ message: 'Unauthorized' });
@@ -172,7 +172,7 @@ const getUserProfile = async (req, res) => {
     // Consulta para obtener el perfil del usuario excluyendo la contraseña
     const user = await User.findById(userId, '-password');
 
-    console.log('User Profile:', user);
+    // console.log('User Profile:', user);
 
     if (!user) {
       return res.status(404).json({ message: 'User not found' });
@@ -184,7 +184,7 @@ const getUserProfile = async (req, res) => {
     // Consulta para obtener información del planeta asociado al usuario
     const userPlanet = await Planet.findOne({ user_id: userIdObj });
 
-    console.log('User Planet:', userPlanet);
+    // console.log('User Planet:', userPlanet);
 
 
     // Combina la información del usuario y el planeta (puede ser null)

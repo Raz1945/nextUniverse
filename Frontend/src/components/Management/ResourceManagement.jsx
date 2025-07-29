@@ -42,22 +42,22 @@ export const ResourceManagement = () => {
     try {
       const planetData = await fetchData();
 
-      
+
       // Ver
       const initialResourceValues = {
-        metal: planetData.planets[0].resources.metal,
+        metal: planetData.resources.metal,
         metalPerHrs: 0,
         metalStorage: 0,
         metalStorageHiden: 0,
-        crystal: planetData.planets[0].resources.crystal,
+        crystal: planetData.resources.crystal,
         crystalPerHrs: 0,
         crystalStorage: 0,
         crystalStorageHiden: 0,
-        deuterium: planetData.planets[0].resources.deuterium,
+        deuterium: planetData.resources.deuterium,
         deuteriumPerHrs: 0,
         deuteriumStorage: 0,
         deuteriumStorageHiden: 0,
-        energy: 0,
+        energy: planetData.resources.energy,
       };
       console.log('Valores iniciales de recursos:', initialResourceValues);
 
@@ -67,8 +67,7 @@ export const ResourceManagement = () => {
     }
   };
 
-
-
+  // Calcula y actualiza los valores de recursos cada INTERVALO_DURACION
   const updateResourceValues = async () => {
     try {
       const planetData = await fetchData();
@@ -104,41 +103,32 @@ export const ResourceManagement = () => {
       );
 
       setResourceValues((prevResourceValues) => {
-        let resourceValueofMetal = prevResourceValues.metal + productionPerSecondofMetal;
-        if (resourceValueofMetal > storageCapacityOfMetal) {
-          resourceValueofMetal = storageCapacityOfMetal;
-        }
+        const metal =
+          prevResourceValues.metal >= storageCapacityOfMetal
+            ? prevResourceValues.metal
+            : prevResourceValues.metal + productionPerSecondofMetal;
 
-        let resourceValueofCrystal = prevResourceValues.crystal + productionPerSecondofCrystal;
-        if (resourceValueofCrystal > storageCapacityOfCrystal) {
-          resourceValueofCrystal = storageCapacityOfCrystal;
-        }
+        const crystal =
+          prevResourceValues.crystal >= storageCapacityOfCrystal
+            ? prevResourceValues.crystal
+            : prevResourceValues.crystal + productionPerSecondofCrystal;
 
-        let resourceValueofDeuterium = prevResourceValues.deuterium + productionPerSecondofDeuterium;
-        if (resourceValueofDeuterium > storageCapacityOfDeuterium) {
-          resourceValueofDeuterium = storageCapacityOfDeuterium;
-        }
-
-        // Actualizar los valores de recursos en el estado
-        const updatedResourceValues = {
-          metalProduction: resourceValueofMetal,
-          crystalProduction: resourceValueofCrystal,
-          deuteriumProduction: resourceValueofDeuterium,
-        };
-
-        // console.log('Valores actualizados:', updatedResourceValues);
+        const deuterium =
+          prevResourceValues.deuterium >= storageCapacityOfDeuterium
+            ? prevResourceValues.deuterium
+            : prevResourceValues.deuterium + productionPerSecondofDeuterium;
 
         return {
-          metal: resourceValueofMetal,
-          metalPerHrs: productionPerSecondofMetal * 3600,
+          metal,
+          metalPerHrs: metal >= storageCapacityOfMetal ? 0 : productionPerSecondofMetal * 3600,
           metalStorage: storageCapacityOfMetal,
           metalStorageHiden,
-          crystal: resourceValueofCrystal,
-          crystalPerHrs: productionPerSecondofCrystal * 3600,
+          crystal,
+          crystalPerHrs: crystal >= storageCapacityOfCrystal ? 0 : productionPerSecondofCrystal * 3600,
           crystalStorage: storageCapacityOfCrystal,
           crystalStorageHiden,
-          deuterium: resourceValueofDeuterium,
-          deuteriumPerHrs: productionPerSecondofDeuterium * 3600,
+          deuterium,
+          deuteriumPerHrs: deuterium >= storageCapacityOfDeuterium ? 0 : productionPerSecondofDeuterium * 3600,
           deuteriumStorage: storageCapacityOfDeuterium,
           deuteriumStorageHiden,
           energy: productionOfEnergy,
@@ -148,7 +138,6 @@ export const ResourceManagement = () => {
       console.error('Error al actualizar los valores de recursos:', error);
     }
   };
-
 
   useEffect(() => {
     fetchDataAndInitialize();
