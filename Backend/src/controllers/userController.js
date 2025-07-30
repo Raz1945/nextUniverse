@@ -159,6 +159,7 @@ const login = async (req, res) => {
         userName: user.userName,
         email: user.email,
         roles: user.roles,
+        // ranking: user.ranking, // Todo modificar el modelo de usuario y agregar este campo
         // ...otros campos que quieras exponer
       },
     });

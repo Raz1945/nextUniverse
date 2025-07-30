@@ -1,11 +1,15 @@
 import { NavbarMenuItem } from "./components/Navbar.MenuItem";
 import { NavbarUserItem } from "./components/Navbar.UserItem";
+import  useAuth from '../../hooks/useAuth';
+
 import './Navbar.css';
 
 export const Navbar = () => {
-  // const ranked = Math.floor(Math.random() * 101);
+  const { auth } = useAuth();
+  const usuario = auth?.user || 'Invitado';
+  // console.log("Usuario:", auth?.user);
+  
   const ranked = "100";
-  const usuario = "JugadorUno";
   const servidor = "Omega";
 
   return (
