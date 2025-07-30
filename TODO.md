@@ -1,29 +1,35 @@
-# Error
-Hay un error a la hora de aumenttar el nivel de una instalacion
+# TODO
+
+## Menú
+- Corregir la navegación por teclado en el menú.
+- Agregar las diferentes páginas del menú (aunque sea solo un H1).
+- Modal de ayuda que indique las teclas y su función.
+
+## Instalaciones
+- Función para actualizar las construcciones.
+- Agregar el tiempo de construcción.
+- Pop-up cuando finalice una actualización de instalación o investigación (ventana emergente con logo, nombre y nivel).
+
+## Recursos
+- El indicador de recursos debe tornarse rojo cuando el depósito esté lleno y amarillo una hora antes.
+- Consumo de energía dependiendo del nivel y tipo de planta.
+
+## Backend
+- En `calculateSpecificInstallationCost`: crear un JSON en el backend para los cálculos de los costes.
+
+## Ayuda/Opciones
+- Para la leyenda visual (Navegacion por teclado),
+   agregar un apartado en Ayuda donde se muestre la navegacion por tecla. 
+
+## Ranking
+- Se debera modificar la creacion de usuario, agregando un ranking
+- Luego se debera modificar el rankig cada cierto lapso de tiempo para actualizarlo
+- *Y si fuera secreto el ranking?*
 
 
+## Store/Redux
+- Almacenar todas las variables útiles en la store.
+- Arreglar el tiempo de construcción en la implementación de Redux.
 
-
-# Cosas a implementar 
-- el consumo de energia dependiendo del   nivel y tipo de planta
-
-- popUp para cuando finalice uan actualizacion de una instalacion o investigacion.
-  una pequeña ventana emergente del lado derecho, que contenga el logo de la pestaña, el nombre y el nivel de la actualizacion que finalizo.
-
-- Que el indicado de recursos se torne rojo, cuando este lleno el deposito. 
-y amarrillo una hora antes.
-
-- almacenar todas las variables utiles en la store  
-
-- en 'calculateSpecificInstallationCost' 
-  Ver de hacer un json en el backend para los calculos de los costes 
-
-# Navegacion mediante teclado
-- un modal para la pestaña de ayuda, que indique las teclas y a que estan dirigidas 
-
-
-
-# Promeblas con la implementacion del redux
--  Falta arreglar el tiempo de construccion
-
-
+## Errores / Problemas
+- Falta arreglar el tiempo de construcción.

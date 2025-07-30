@@ -52,11 +52,9 @@ export const Login = () => {
 
       // Guardar el token en localStorage
       localStorage.setItem('accessToken', accessToken);
-      console.log("Token guardado en localStorage:", accessToken);
+      // console.log("Token guardado en localStorage:", accessToken);
 
-      // setAuth({ user, pwd, roles, accessToken });
       setAuth({ user, roles, accessToken });
-
       setUser('');
       setPwd('');
       navigate(from, { replace: true });

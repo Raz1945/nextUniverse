@@ -1,60 +1,57 @@
-import { Link } from 'react-router-dom';
+import { useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import './menu.css';
 
+// Lista de rutas del menú con tecla asignada
+const menuItems = [
+  { path: '/main', label: 'Overview', key: 'O' },
+  { path: '/main/installations', label: 'Installation', key: 'I' },
+  { path: '/main/research', label: 'Research', key: 'R' },
+  { path: '/main/hangar', label: 'Hangar', key: 'H' },
+  { path: '/main/defense', label: 'Defense', key: 'D' },
+  { path: '/main/fleet', label: 'Fleet', key: 'F' },
+  { path: '/main/alliance', label: 'Alliance', key: 'A' },
+  { path: '/main/galaxy', label: 'Galaxy', key: 'G' },
+  { path: '/main/empire', label: 'Empire', key: 'E' },
+  { path: '/main/store', label: 'Store', key: 'S' },
+];
+
 export const Menu = () => {
+  const navigate = useNavigate();
+
+  // Navegación por teclado
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      // Ignora si el usuario está escribiendo en un input/textarea
+      if (['INPUT', 'TEXTAREA'].includes(document.activeElement.tagName)) return;
+
+      // Detectar si 'Alt' está presionado junto con la tecla
+      if (e.altKey) {
+        const pressedKey = e.key.toUpperCase();
+        const item = menuItems.find((i) => i.key === pressedKey);
+        if (item) {
+          e.preventDefault(); // Evita conflictos con accesos rápidos del navegador
+          navigate(item.path);
+        }
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [navigate]);
+
+
   return (
     <div className='menu__wrapper border-right-to-bottom'>
       <ul className='menu__list_content'>
-        <li className='menu__item'>
-          <Link to='/main' className='menu__item-link'>
-            Overview
-          </Link>
-        </li>
-        <li className='menu__item'>
-          <Link to='/main/installations' className='menu__item-link'>
-            Installation
-          </Link>
-        </li>
-        <li className='menu__item'>
-          <Link to='/research' className='menu__item-link'>
-            Research
-          </Link>
-        </li>
-        <li className='menu__item'>
-          <Link to='/main/hangar' className='menu__item-link'>
-            Hangar
-          </Link>
-        </li>
-        <li className='menu__item'>
-          <Link to='/defense' className='menu__item-link'>
-            Defense
-          </Link>
-        </li>
-        <li className='menu__item'>
-          <Link to='/fleet' className='menu__item-link'>
-            Fleet
-          </Link>
-        </li>
-        <li className='menu__item'>
-          <Link to='/alliance' className='menu__item-link'>
-            Alliance
-          </Link>
-        </li>
-        <li className='menu__item'>
-          <Link to='/galaxy' className='menu__item-link'>
-            Galaxy
-          </Link>
-        </li>
-        <li className='menu__item'>
-          <Link to='/empire' className='menu__item-link'>
-            Empire
-          </Link>
-        </li>
-        <li className='menu__item'>
-          <Link to='/store' className='menu__item-link'>
-            Store
-          </Link>
-        </li>
+        {/* Renderiza cada ítem del menú dinámicamente */}
+        {menuItems.map((item) => (
+          <li className='menu__item' key={item.path}>
+            <Link to={item.path} className='menu__item-link'>
+              {item.label} <span className="menu__shortcut">[{item.key}]</span>
+            </Link>
+          </li>
+        ))}
       </ul>
     </div>
   );

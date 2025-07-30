@@ -20,7 +20,8 @@ export const Installations = () => {
       crystalCost: installationState.metalMine.crystalCost,
       deuteriumCost: installationState.metalMine.deuteriumCost,
       currentLevel: installationState.metalMine.level,
-      countdown: installationState.metalMine.countdown || "1 minuto",
+      countdown: installationState.metalMine.countdown || "3 minutos", // Valor de prueba "3 minutos"
+      // ... 
     },
   ];
 

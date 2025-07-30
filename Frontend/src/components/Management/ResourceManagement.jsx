@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from 'react';
 import {
   GiIBeam,
@@ -15,11 +16,13 @@ import './resourceManagement.css';
 
 const PROFILE_URL = '/profile';
 const UPDATE_URL = '/profile/update';
-const INTERVALO_DURACION = 5000;
+const INTERVALO_DURACION = 5000; // Intervalo de actualización automática (ms)
 
 export const ResourceManagement = () => {
+  // Estado para los valores de recursos
   const [resourceValues, setResourceValues] = useState(null);
 
+  // Obtiene los datos del planeta del usuario desde el backend
   const fetchData = async () => {
     try {
       const accessToken = localStorage.getItem('accessToken');
@@ -31,19 +34,18 @@ export const ResourceManagement = () => {
 
       const { Planet } = response.data;
       return Planet;
-
     } catch (error) {
       console.error('Error al obtener datos:', error);
       throw error;
     }
   };
 
+  // Inicializa los valores de recursos al cargar el componente
   const fetchInitialResourceValues = async () => {
     try {
       const planetData = await fetchData();
 
-
-      // Ver
+      // Estructura inicial de los recursos
       const initialResourceValues = {
         metal: planetData.resources.metal,
         metalPerHrs: 0,
@@ -67,11 +69,12 @@ export const ResourceManagement = () => {
     }
   };
 
-  // Calcula y actualiza los valores de recursos cada INTERVALO_DURACION
+  // Actualiza los valores de recursos cada INTERVALO_DURACION
   const updateResourceValues = async () => {
     try {
       const planetData = await fetchData();
 
+      // Calcula la producción y capacidades actuales
       const {
         productionPerSecondofMetal,
         productionPerSecondofCrystal,
@@ -102,6 +105,7 @@ export const ResourceManagement = () => {
         planetData.planets[0].installation.deuteriumTank.currentLevel
       );
 
+      // Actualiza el estado de los recursos, deteniendo la producción si se alcanza el máximo
       setResourceValues((prevResourceValues) => {
         const metal =
           prevResourceValues.metal >= storageCapacityOfMetal
@@ -139,23 +143,26 @@ export const ResourceManagement = () => {
     }
   };
 
+  // Inicializa los recursos y comienza el intervalo de actualización automática
   useEffect(() => {
     fetchDataAndInitialize();
   }, []);
 
+  // Función para inicializar y limpiar el intervalo
   const fetchDataAndInitialize = async () => {
     await fetchInitialResourceValues();
     const interval = setInterval(updateResourceValues, INTERVALO_DURACION);
     return () => clearInterval(interval);
   };
 
-
+  // Guarda los valores de producción en el backend cada vez que cambian los recursos
   useEffect(() => {
     if (resourceValues) {
       saveProductionData();
     }
   }, [resourceValues]);
 
+  // Envía los valores de recursos actualizados al backend
   const saveProductionData = async () => {
     const accessToken = localStorage.getItem('accessToken');
     try {
@@ -179,17 +186,18 @@ export const ResourceManagement = () => {
     }
   };
 
-
+  // Si los recursos no están listos, no renderiza nada
   if (!resourceValues) {
     return null;
   }
 
-
+  // Renderiza los indicadores de recursos y la interfaz principal
   return (
     <>
       {/*  Icono/logo de nextU */}
 
       <div className="resource-indicators__wrapper">
+        {/* Indicador de Metal */}
         <ResourceIndicator
           icon={<GiIBeam size={23} />}
           resource="metal"
@@ -199,6 +207,7 @@ export const ResourceManagement = () => {
           storage={Math.round(resourceValues.metalStorage)}
           storageHiden={Math.round(resourceValues.metalStorageHiden)}
         />
+        {/* Indicador de Cristal */}
         <ResourceIndicator
           icon={<GiDiamondHard size={23} />}
           resource="crystal"
@@ -208,6 +217,7 @@ export const ResourceManagement = () => {
           storage={Math.round(resourceValues.crystalStorage)}
           storageHiden={Math.round(resourceValues.crystalStorageHiden)}
         />
+        {/* Indicador de Deuterio */}
         <ResourceIndicator
           icon={<GiOilPump size={23} />}
           resource="deuterium"
@@ -217,13 +227,14 @@ export const ResourceManagement = () => {
           storage={Math.round(resourceValues.deuteriumStorage)}
           storageHiden={Math.round(resourceValues.deuteriumStorageHiden)}
         />
+        {/* Indicador de Energía */}
         <ResourceIndicator
           icon={<GiLightningArc size={23} />}
           resource="energy"
           production={Math.round(resourceValues.energy)}
           productionPerHrs={Math.round(resourceValues.energy)}
-          reserve={500} //todo  Establecer el valor de reserva
-          usage={19} //todo Establecer el uso de la energía 
+          reserve={500} // TODO: Establecer el valor de reserva
+          usage={19} // TODO: Establecer el uso de la energía
         />
       </div>
 

@@ -152,7 +152,16 @@ const login = async (req, res) => {
     );
 
     // Responder con el token JWT
-    res.status(200).json({ accessToken });
+    res.status(200).json({
+      accessToken,
+      user: {
+        id: user._id,
+        userName: user.userName,
+        email: user.email,
+        roles: user.roles,
+        // ...otros campos que quieras exponer
+      },
+    });
   } catch (error) {
     res.status(500).json({ message: 'Login failed', error: error.message });
   }
@@ -179,13 +188,13 @@ const getUserProfile = async (req, res) => {
     }
 
     // Convierte userId a ObjectId si es string
-    const userIdObj = typeof userId === 'string' ? new mongoose.Types.ObjectId(userId) : userId;
+    const userIdObj =
+      typeof userId === 'string' ? new mongoose.Types.ObjectId(userId) : userId;
 
     // Consulta para obtener información del planeta asociado al usuario
     const userPlanet = await Planet.findOne({ user_id: userIdObj });
 
     // console.log('User Planet:', userPlanet);
-
 
     // Combina la información del usuario y el planeta (puede ser null)
     const userProfileWithPlanet = {
