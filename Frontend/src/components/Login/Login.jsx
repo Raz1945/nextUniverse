@@ -44,17 +44,19 @@ export const Login = () => {
         }
       );
 
-      // console.log(JSON.stringify(response?.data));
-      // console.log("Respuesta del servidor:", response?.data);
+      //debugin console.log(JSON.stringify(response?.data));
+      //debugin console.log("Respuesta del servidor:", response?.data);
 
       const accessToken = response?.data?.accessToken;
       const roles = response?.data?.roles;
 
       // Guardar el token en localStorage
       localStorage.setItem('accessToken', accessToken);
-      // console.log("Token guardado en localStorage:", accessToken);
+      //debugin console.log("Token guardado en localStorage:", accessToken);
 
       setAuth({ user, roles, accessToken });
+      //debugin console.log("Usuario autenticado:", { user, roles, accessToken });
+
       setUser('');
       setPwd('');
       navigate(from, { replace: true });

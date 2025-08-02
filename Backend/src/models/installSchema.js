@@ -11,6 +11,10 @@ const installSchema = new Schema({
     deuterium: Number,
   },
   value: Number,
+  countdown: {
+    type: String,
+    default: '3 minutos', // Valor de prueba
+  },
 });
 
 export default mongoose.model('Install', installSchema);

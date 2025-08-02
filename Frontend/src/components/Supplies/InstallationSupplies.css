@@ -38,6 +38,7 @@
   background-color: red; /* cambiar */
   border: 2px outset red;
   /* z-index: 1001; */
+  cursor: pointer;
 }
 
 /* Superposición */

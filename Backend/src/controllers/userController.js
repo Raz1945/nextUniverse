@@ -1,5 +1,5 @@
 import dotenv from 'dotenv';
-dotenv.config({ path: './src/config/.env' }); // Ruta personalizada si el .env está ahí
+dotenv.config({ path: './src/config/.env' }); 
 
 import mongoose from 'mongoose';
 import { ObjectId } from 'mongodb';

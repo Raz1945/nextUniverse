@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-import installationSlice from "./reducers/installationSlice";
+import installationReducer from "./reducers/installationSlice";
 
 // creamos el store usando la función configureStore
 export const store = configureStore({
@@ -7,6 +7,6 @@ export const store = configureStore({
   reducer: {
     // dentro del objeto reducer, ponemos todos los slices que queremos usar
     // en este caso, solo tenemos el slice de installation
-    installation: installationSlice.reducer,
+    installation: installationReducer,
   },
 });

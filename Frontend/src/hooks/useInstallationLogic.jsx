@@ -1,4 +1,5 @@
-// importamos los hooks useEffect y useState de react
+// ! Esto se puede borrar, ya que no se usa en ningun lado
+
 import { useEffect, useState } from 'react';
 import { calculateSpecificInstallationCost } from '../functions/calculateInstallationCost/calculateSpecificInstallationCost';
 import { calculateTimeBuild } from '../functions/calculateInstallationCost/calculateTimeBuild';
@@ -22,7 +23,7 @@ export const useInstallationLogic = (installationState, dispatch) => {
   // usamos el hook useState para crear un estado local que guarda el intervalo del contador
   const [countdownInterval, setCountdownInterval] = useState(null);
 
-  // usamos el hook useEffect para obtener los niveles de las instalaciones y lso costos de la misma, cuando se monta el componente
+  // usamos el hook useEffect para obtener los niveles de las instalaciones y los costos de la misma, cuando se monta el componente
   useEffect(() => {
     fetchInstallationLevels();
     fetchInitialCost();
@@ -76,7 +77,6 @@ export const useInstallationLogic = (installationState, dispatch) => {
       console.error('Error fetching initial cost:', error);
     }
   };
-
 
 
 

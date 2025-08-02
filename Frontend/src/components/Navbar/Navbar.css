@@ -42,6 +42,8 @@
   padding: 0rem 0.5rem;
   white-space: nowrap;
   text-decoration: inherit;
+  cursor: pointer;
+
 }
 
 /* Nav Menu text  */

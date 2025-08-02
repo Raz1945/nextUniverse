@@ -1,14 +1,22 @@
 # TODO
 
 ## Menú
-- Corregir la navegación por teclado en el menú.
-- Agregar las diferentes páginas del menú (aunque sea solo un H1).
 - Modal de ayuda que indique las teclas y su función.
 
 ## Instalaciones
 - Función para actualizar las construcciones.
-- Agregar el tiempo de construcción.
-- Pop-up cuando finalice una actualización de instalación o investigación (ventana emergente con logo, nombre y nivel).
+   
+   ### Tiempo de construccion
+   - Agregar el tiempo de construcción.
+   - Pop-up cuando finalice una actualización de instalación o investigación (ventana emergente con logo, nombre y nivel).
+
+Se debera modificar el modelo de las instalacciones agregando una propiedad parar el 'countdown' o tiempo de construccion. 
+Ademas se debera crear un logica para el calculo de los tiempos de construccion; o se podria utilizar una tabla con los datos y los tiempos ya prefijados. 
+Teniendo dichos cambios se podra modificar el fontend para pasar dichos datos.
+
+
+## Logout
+
 
 ## Recursos
 - El indicador de recursos debe tornarse rojo cuando el depósito esté lleno y amarillo una hora antes.

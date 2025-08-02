@@ -1,36 +1,23 @@
-import { useEffect, useState } from 'react';
-import { Supplies } from "./Supplies";
-import { SupplieInfo } from "../Installations/SupplieInfo";
+import { useState, useMemo } from 'react';
+import { Supplies } from './Supplies';
+import { SupplieInfo } from '../Installations/SupplieInfo';
 import { img } from '../../assets/installationsData';
+import { buildPlantTypeMap } from '../../utils/buildPlantTypeMap';
 import './InstallationSupplies.css';
 
 export const InstallationSupplies = ({
-  plantType,
-  metalCost,
-  crystalCost,
-  deuteriumCost,
-  currentLevel,
-  picture,
+  installationState,
   onClickUpdate,
   onClickCancel,
   onClickDestroy,
-  countdown,
-
 }) => {
   const [selectedPlant, setSelectedPlant] = useState(null);
-  
-  // useEffect(() => {
-  //   console.log(selectedPlant)
-  // }), [selectedPlant]
+
+  // Genera automáticamente el mapa: 'metal' → 'metalMine', etc.
+  const plantTypeMap = useMemo(() => buildPlantTypeMap(installationState), [installationState]);
 
   const handleSuppliesClick = (plantType) => {
-    // Si se hace clic en la misma planta que ya se está mostrando, cierra la información
-    if (selectedPlant === plantType) {
-      setSelectedPlant(null);
-    } else {
-      // Cambia la planta seleccionada y muestra la información correspondiente
-      setSelectedPlant(plantType);
-    }
+    setSelectedPlant((prev) => (prev === plantType ? null : plantType));
   };
 
   return (
@@ -39,38 +26,29 @@ export const InstallationSupplies = ({
         {selectedPlant && (
           <SupplieInfo
             plantType={selectedPlant}
-            picture={img.installation[selectedPlant].inside[1]}
-
-            currentLevel={currentLevel}
-
-            countdown={countdown}
-
-            metalCost={metalCost}
-            crystalCost={crystalCost}
-            deuteriumCost={deuteriumCost}
-
-            onClickUpdate={() => { onClickUpdate() }}
-            onClickCancel={() => { onClickCancel }}
-            onClickDestroy={() => { onClickDestroy }}
+            picture={img.installation[selectedPlant]?.inside[1]}
+            currentLevel={installationState[plantTypeMap[selectedPlant]]?.level || 0}
+            countdown={installationState[plantTypeMap[selectedPlant]]?.countdown || '—'}
+            metalCost={installationState[plantTypeMap[selectedPlant]]?.metalCost || 0}
+            crystalCost={installationState[plantTypeMap[selectedPlant]]?.crystalCost || 0}
+            deuteriumCost={installationState[plantTypeMap[selectedPlant]]?.deuteriumCost || 0}
+            onClickUpdate={() => onClickUpdate(plantTypeMap[selectedPlant])}
+            onClickCancel={() => onClickCancel(plantTypeMap[selectedPlant])}
+            onClickDestroy={() => onClickDestroy(plantTypeMap[selectedPlant])}
           />
         )}
       </div>
+
       <div className="bottom">
-        <Supplies
-          picture={img.installation.metal.outside[1]}
-          plantType={'metal'}
-          onClickShow={() => handleSuppliesClick('metal')}
-        />
-        <Supplies
-          picture={img.installation.crystal.outside[1]}
-          plantType={'crystal'}
-          onClickShow={() => handleSuppliesClick('crystal')}
-        />
-        <Supplies
-          picture={img.installation.deuterium.outside[1]}
-          plantType={'deuterium'}
-          onClickShow={() => handleSuppliesClick('deuterium')}
-        />
+        {Object.keys(plantTypeMap).map((plantType) => (
+          <Supplies
+            key={plantType}
+            picture={img.installation[plantType]?.outside[1]}
+            plantType={plantType}
+            currentLevel={installationState[plantTypeMap[plantType]]?.level || 0}
+            onClickShow={() => handleSuppliesClick(plantType)}
+          />
+        ))}
       </div>
     </div>
   );

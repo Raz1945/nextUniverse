@@ -25,8 +25,8 @@ export const Menu = () => {
       // Ignora si el usuario está escribiendo en un input/textarea
       if (['INPUT', 'TEXTAREA'].includes(document.activeElement.tagName)) return;
 
-      // Detectar si 'Alt' está presionado junto con la tecla
-      if (e.altKey) {
+      // Detectar al presionar la tecla
+      if (e) {
         const pressedKey = e.key.toUpperCase();
         const item = menuItems.find((i) => i.key === pressedKey);
         if (item) {

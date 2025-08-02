@@ -1,5 +1,5 @@
 import dotenv from 'dotenv';
-dotenv.config({ path: './src/config/.env' }); // Ajustá la ruta según la ubicación real
+dotenv.config({ path: './src/config/.env' });
 
 // Importar modelo
 import UserPlanet from '../models/userPlanetSchema.js';
@@ -160,7 +160,7 @@ const getAllPlantCurrentLevels = async (req, res) => {
       // Agrega más instalaciones según sea necesario
     };
 
-    // console.log('Respuesta del servidor:', installationLevels);
+    console.log('Respuesta del servidor:', installationLevels);
     res.status(200).json(installationLevels);
   } catch (error) {
     console.error('Error al obtener los niveles de las plantas:', error);
