@@ -21,6 +21,7 @@ const userPlanetSchema = new Schema({
   },
   planets: [
     {
+      // ID del planeta actual
       _id: {
         type: Schema.Types.ObjectId,
       },
@@ -28,6 +29,7 @@ const userPlanetSchema = new Schema({
       tempMax: Number,
       tempMin: Number,
       diameter: Number,
+      visualPlanetId: Number, // ID para la visualización del planeta
       installation: {
         metalMine: { type: Install.schema },
         crystalMine: { type: Install.schema },

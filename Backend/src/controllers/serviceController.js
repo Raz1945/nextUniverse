@@ -124,49 +124,32 @@ const getAllPlantCurrentLevels = async (req, res) => {
     const userPlanet = await UserPlanet.findOne({ user_id: userId });
 
     if (!userPlanet) {
-      return res
-        .status(404)
-        .json({ message: 'Perfil de planeta no encontrado' });
+      return res.status(404).json({ message: 'Perfil de planeta no encontrado' });
     }
 
-    const installationLevels = {
-      resource: {
-        metalMine:
-          userPlanet.planets[0].installation?.metalMine?.currentLevel ?? 0,
-        crystalMine:
-          userPlanet.planets[0].installation?.crystalMine?.currentLevel ?? 0,
-        deuteriumSynthesizer:
-          userPlanet.planets[0].installation?.deuteriumSynthesizer
-            ?.currentLevel ?? 0,
-        solarPowerPlant:
-          userPlanet.planets[0].installation?.solarPowerPlant?.currentLevel ??
-          0,
-      },
-      storage: {
-        metalWarehouse:
-          userPlanet.planets[0].installation?.metalWarehouse?.currentLevel ?? 0,
-        crystalWarehouse:
-          userPlanet.planets[0].installation?.crystalWarehouse?.currentLevel ??
-          0,
-        deuteriumTank:
-          userPlanet.planets[0].installation?.deuteriumTank?.currentLevel ?? 0,
-      },
-      installation: {
-        robotFactory:
-          userPlanet.planets[0].installation?.robotFactory?.currentLevel ?? 0,
-        nanoFactory:
-          userPlanet.planets[0].installation?.nanobotFactory?.currentLevel ?? 0,
-      },
-      // Agrega más instalaciones según sea necesario
-    };
+    const inst = userPlanet.planets[0]?.installation ?? {};
+    // console.log('Instalaciones encontradas:', inst);
 
-    console.log('Respuesta del servidor:', installationLevels);
+    const installationLevels = {
+      metalMine: inst.metalMine?.currentLevel ?? 0,
+      crystalMine: inst.crystalMine?.currentLevel ?? 0,
+      deuteriumSynthesizer: inst.deuteriumSynthesizer?.currentLevel ?? 0,
+      solarPowerPlant: inst.solarPowerPlant?.currentLevel ?? 0,
+      metalWarehouse: inst.metalWarehouse?.currentLevel ?? 0,
+      crystalWarehouse: inst.crystalWarehouse?.currentLevel ?? 0,
+      deuteriumTank: inst.deuteriumTank?.currentLevel ?? 0,
+      robotFactory: inst.robotFactory?.currentLevel ?? 0,
+      nanobotFactory: inst.nanobotFactory?.currentLevel ?? 0, 
+    };
+    console.log('Niveles de instalaciones enviados:', installationLevels);
+
     res.status(200).json(installationLevels);
   } catch (error) {
     console.error('Error al obtener los niveles de las plantas:', error);
     res.status(500).send('Error interno del servidor');
   }
 };
+
 
 export {
   updateResourceValue,

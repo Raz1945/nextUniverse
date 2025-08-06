@@ -18,27 +18,25 @@ const menuItems = [
 
 export const Menu = () => {
   const navigate = useNavigate();
+useEffect(() => {
+  const handleKeyDown = (e) => {
+    // Ignora si el usuario está escribiendo en un input/textarea
+    if (['INPUT', 'TEXTAREA'].includes(document.activeElement.tagName)) return;
 
-  // Navegación por teclado
-  useEffect(() => {
-    const handleKeyDown = (e) => {
-      // Ignora si el usuario está escribiendo en un input/textarea
-      if (['INPUT', 'TEXTAREA'].includes(document.activeElement.tagName)) return;
+    // Ignora combinaciones con teclas modificadoras
+    if (e.ctrlKey || e.metaKey || e.altKey) return;
 
-      // Detectar al presionar la tecla
-      if (e) {
-        const pressedKey = e.key.toUpperCase();
-        const item = menuItems.find((i) => i.key === pressedKey);
-        if (item) {
-          e.preventDefault(); // Evita conflictos con accesos rápidos del navegador
-          navigate(item.path);
-        }
-      }
-    };
+    const pressedKey = e.key.toUpperCase();
+    const item = menuItems.find((i) => i.key === pressedKey);
+    if (item) {
+      e.preventDefault(); // Solo previene si se va a navegar
+      navigate(item.path);
+    }
+  };
 
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [navigate]);
+  window.addEventListener('keydown', handleKeyDown);
+  return () => window.removeEventListener('keydown', handleKeyDown);
+}, [navigate]);
 
 
   return (

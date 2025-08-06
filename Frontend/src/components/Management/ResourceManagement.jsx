@@ -61,7 +61,7 @@ export const ResourceManagement = () => {
         deuteriumStorageHiden: 0,
         energy: planetData.resources.energy,
       };
-      console.log('Valores iniciales de recursos:', initialResourceValues);
+      // console.log('Valores iniciales de recursos:', initialResourceValues);
 
       setResourceValues(initialResourceValues);
     } catch (error) {

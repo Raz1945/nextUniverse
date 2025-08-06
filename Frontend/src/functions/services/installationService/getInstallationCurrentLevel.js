@@ -1,5 +1,4 @@
 import axios from '../../../api/axios';
-
 const GET_PLANT_LEVEL_URL = '/profile/plants/level';
 
 export const getInstallationCurrentLevel = async () => {
@@ -14,7 +13,7 @@ export const getInstallationCurrentLevel = async () => {
     });
 
     // Devuelve el objeto completo de niveles de las instalaciones
-    const installationLevels = response.data.resource;
+    const installationLevels = response.data;
     console.log('Los niveles son:', installationLevels); // debugging
 
 

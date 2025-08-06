@@ -14,15 +14,33 @@ Se debera modificar el modelo de las instalacciones agregando una propiedad para
 Ademas se debera crear un logica para el calculo de los tiempos de construccion; o se podria utilizar una tabla con los datos y los tiempos ya prefijados. 
 Teniendo dichos cambios se podra modificar el fontend para pasar dichos datos.
 
+### Pictures
+Hay que crear las distintas imagenes para todo lo que falta.
+- planetas vistas interior y exterior
+- instalaciones
+- tegnologias 
+- defenasas
+- naves
+- otras
 
 ## Logout
+
+## Colonizar
+Cómo usarlo con una fórmula de rango [100, 300]
+Cuando quieras pasar una fórmula de diámetro:
+``` js
+await createUserPlanet(userId, {
+  name: 'New Terra',
+  diameterFn: () => Math.floor(Math.random() * (300 - 100 + 1)) + 100
+});
+``` 
 
 
 ## Recursos
 - El indicador de recursos debe tornarse rojo cuando el depósito esté lleno y amarillo una hora antes.
 - Consumo de energía dependiendo del nivel y tipo de planta.
 
-## Backend
+## __Backend__
 - En `calculateSpecificInstallationCost`: crear un JSON en el backend para los cálculos de los costes.
 
 ## Ayuda/Opciones

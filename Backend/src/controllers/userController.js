@@ -8,6 +8,7 @@ import jwt from 'jsonwebtoken';
 
 import User from '../models/userSchema.js';
 import Planet from '../models/userPlanetSchema.js';
+import { createUserPlanet } from '../services/planetService.js';
 
 // Crear un nuevo usuario
 const register = async (req, res) => {
@@ -37,79 +38,8 @@ const register = async (req, res) => {
     const userId = result._id;
 
     // Crear el Planeta inicial asociado a este usuario
-    const newUserPlanet = new Planet({
-      user_id: userId, // Asociamos el ID del usuario
-      ecoUniverse: 6,
-      resources: {
-        metal: 1000,
-        crystal: 1000,
-        deuterium: 0,
-        energy: 0,
-      },
-      planets: [
-        {
-          _id: new mongoose.Types.ObjectId(),
-          name: 'Earth', // Nombre del planeta
-          tempMax: 10, // Todo --> Debería variar según el planeta
-          tempMin: 0, // Todo --> Debería variar según el planeta
-
-          diameter: 170,
-          installation: {
-            metalMine: {
-              plantType: 'metal',
-              currentLevel: 10, // * cambiar a 0
-              efficiency: 1,
-              valueOfMetal: 0,
-            },
-            crystalMine: {
-              plantType: 'crystal',
-              currentLevel: 0,
-              efficiency: 1,
-              valueOfCrystal: 0,
-            },
-            deuteriumSynthesizer: {
-              plantType: 'deuterium',
-              currentLevel: 0,
-              efficiency: 1,
-              valueOfDeuterium: 0,
-            },
-            solarPowerPlant: {
-              plantType: 'energy',
-              currentLevel: 0,
-              efficiency: 1,
-              valueOfEnergy: 0,
-            },
-            metalWarehouse: {
-              currentLevel: 0,
-            },
-            crystalWarehouse: {
-              currentLevel: 0,
-            },
-            deuteriumTank: {
-              currentLevel: 0,
-            },
-            robotFactory: {
-              plantType: 'robotFactory',
-              currentLevel: 0,
-            },
-            nanobotsFactory: {
-              plantType: 'nanobotsFactory',
-              currentLevel: 0,
-            },
-            //...otros detalles del planeta
-          },
-          // ...
-        },
-      ],
-      technology: {
-        energyTechnologyLevel: 1,
-        computerTechnologyLevel: 0,
-      },
-    });
-
-    // Guardar el nuevo recurso en la base de datos
-    await newUserPlanet.save();
-
+    await createUserPlanet(userId);
+    
     // Responder con el usuario creado
     res.status(201).json(result);
   } catch (error) {

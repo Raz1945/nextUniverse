@@ -45,12 +45,14 @@ const installationSlice = createSlice({
       const { plantType, level } = action.payload;
       state[plantType].level = level;
     },
-    updateCost(state, action) {
-      const { plantType, metalCost, crystalCost, deuteriumCost } = action.payload;
-      state[plantType].metalCost = metalCost;
-      state[plantType].crystalCost = crystalCost;
-      state[plantType].deuteriumCost = deuteriumCost;
-    },
+  updateCost(state, action) {
+    const { plantType, metalCost, crystalCost, deuteriumCost } = action.payload;
+    if (!state[plantType] || typeof state[plantType] !== 'object') return;
+    state[plantType].metalCost = metalCost;
+    state[plantType].crystalCost = crystalCost;
+    state[plantType].deuteriumCost = deuteriumCost;
+  },
+
     updateTime(state, action) {
       const { plantType, timeToBuild, endTime } = action.payload;
       state[plantType].timeToBuild = timeToBuild;

@@ -7,6 +7,7 @@ import { useInstallationLogic } from '../hooks/useInstallationLogic';
 export const Installations = () => {
   const dispatch = useDispatch();
   const installationState = useSelector((state) => state.installation);
+  console.log('Estado actual de instalación:', installationState);
 
   useEffect(() => {
     dispatch(fetchInstallationLevels());
@@ -25,6 +26,5 @@ export const Installations = () => {
       onClickCancel={handleOnClickCancel}
       onClickDestroy={handleOnClickDestroy}
     />
-    // <h1>hola</h1>
   );
 };

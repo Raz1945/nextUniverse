@@ -6,6 +6,7 @@
   * @param {Object} installationState - El estado actual de las instalaciones.
   * @returns {Object} Un objeto donde las claves son los tipos de plantas simplificados y los valores son los nombres completos.
   */
+ 
 export const buildPlantTypeMap = (installationState) => {
   return Object.keys(installationState).reduce((acc, key) => {
     const shortKey = key
